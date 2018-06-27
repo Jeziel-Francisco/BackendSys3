@@ -4,6 +4,7 @@ import Business from './business';
 
 import { IPersonInstance } from '../../models/PersonModel';
 import { onSuccessResponse, onErrorResponse } from '../../utils/utils';
+import { PropertyToken } from '../auth/auth';
 
 class Controller {
     constructor() { }
@@ -11,6 +12,15 @@ class Controller {
     async findById(req: Request, res: Response) {
         try {
             let data: IPersonInstance = await Business.findById(req['context'], req.params.id);
+            onSuccessResponse(res, data);
+        } catch (error) {
+            onErrorResponse(res, error);
+        }
+    }
+
+    async findAll(req: Request, res: Response) {
+        try {
+            let data: IPersonInstance = await Business.findAll(req['context'], PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -35,3 +45,5 @@ class Controller {
         }
     }
 }
+
+export default new Controller();

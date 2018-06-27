@@ -37,7 +37,10 @@ class Business {
     async auth({ db }: { db: IDbConnection }, auth: { email: string, password: string }) {
         let user: IUserInstance = await this.findByEmail({ db: db }, auth.email);
         if (!user) throw new Error('email or password invalid !');
-        let payload = { sub: user.get('id') }
+        let payload = {
+            sub: user.get('id'),
+            companyId: user.get('companyId')
+        };
         return await Sign(payload)
     }
 }

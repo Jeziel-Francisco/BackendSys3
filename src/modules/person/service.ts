@@ -8,6 +8,10 @@ class Service {
         return db.Person.findById(id);
     }
 
+    findAll(db: IDbConnection, companyId: number) {
+        return db.Person.find({ where: { companyId: companyId } });
+    }
+
     create(db: IDbConnection, person: IPersonAttributes) {
         return db.Person.create(person);
     }

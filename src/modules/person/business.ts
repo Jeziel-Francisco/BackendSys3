@@ -10,6 +10,10 @@ class Business {
         return Service.findById(db, id);
     }
 
+    findAll({ db }: { db: IDbConnection }, companyId: number) {
+        return Service.findAll(db, companyId);
+    }
+
     create({ db }: { db: IDbConnection }, person: IPersonAttributes) {
         return Service.create(db, person);
     }
