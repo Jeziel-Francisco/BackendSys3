@@ -30,10 +30,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         note: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 512
-            }
+            type: DataTypes.STRING
         },
         percentageTributes: {
             type: DataTypes.FLOAT

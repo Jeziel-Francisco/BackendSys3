@@ -38,8 +38,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false,
             validate: {
                 notEmpty: true,
-                min: 3,
-                max: 128
+                min: 3
             }
         },
         personId: {

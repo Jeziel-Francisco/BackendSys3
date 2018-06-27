@@ -47,10 +47,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.FLOAT
         },
         note: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 512
-            }
+            type: DataTypes.STRING
         },
         saleId: {
             type: DataTypes.INTEGER

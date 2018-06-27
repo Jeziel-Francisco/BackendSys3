@@ -36,81 +36,36 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notEmpty: true,
-                max: 128
+                notEmpty: true
             }
         },
         fantasy: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            allowNull: false
         },
         registryFederal: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         registryState: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         registryMunicipal: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         passwordMunicipal: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         passwordCertificate: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         nameResponsible: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         typeCertificate: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         typeEmissionNote: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         addressId: {
             type: DataTypes.INTEGER,

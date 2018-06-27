@@ -37,10 +37,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.BOOLEAN
         },
         description: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 128
-            }
+            type: DataTypes.STRING
         },
     }, {
             tableName: 'typeDocuments'

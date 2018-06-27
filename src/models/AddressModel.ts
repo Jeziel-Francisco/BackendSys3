@@ -32,40 +32,22 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         cep: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         place: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         neighborhood: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         number: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         complement: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 512
-            }
+            type: DataTypes.STRING
         },
         note: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 512
-            }
+            type: DataTypes.STRING
         },
         clientId: {
             type: DataTypes.INTEGER
@@ -73,8 +55,8 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         cityId: {
             type: DataTypes.INTEGER
         },
-        personId:{
-            type:DataTypes.INTEGER
+        personId: {
+            type: DataTypes.INTEGER
         }
     }, {
             tableName: 'address'
@@ -83,7 +65,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
     );
 
     Address.associate = (db: IDbConnection) => {
- /*        db.Address.hasMany(db.Company, { foreignKey: 'addressId' }); */
+        /*        db.Address.hasMany(db.Company, { foreignKey: 'addressId' }); */
         db.Address.belongsTo(db.Person, { foreignKey: 'personId' });
         db.Address.belongsTo(db.City, { foreignKey: 'cityId' });
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "set NODE_ENV=development set JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
+    "dev": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
     "start": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK node dist/index",
     "gulp": "node_modules/.bin/gulp",
     "test": "echo \"Error: no test specified\" && exit 1"

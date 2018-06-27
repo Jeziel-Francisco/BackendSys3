@@ -27,16 +27,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         description: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 125
-            }
+            type: DataTypes.STRING
         },
         initials: {
-            type: DataTypes.STRING,
-            validate: {
-                max: 125
-            }
+            type: DataTypes.STRING
         },
         factor: {
             type: DataTypes.FLOAT

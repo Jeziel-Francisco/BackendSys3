@@ -10,12 +10,14 @@ class Service {
     findById(db: IDbConnection, id: number) {
         return db.User.findById(id as number);
     }
-    
+
     findByEmail(db: IDbConnection, email: string) {
         return db.User.findOne({ where: { email: email } });
     }
 
-    create(db: IDbConnection, model: IUserAttibutes) {
+    async create(db: IDbConnection, model: IUserAttibutes) {
+        let user = await db.User.findOne({ where: { email: model.email } })
+        if (user) throw new Error('email already exists !');
         return db.User.create(model);
     }
 

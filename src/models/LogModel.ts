@@ -35,10 +35,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.INTEGER
         },
         beforeData: {
-            type: DataTypes.STRING,
-            validate:{
-                max:1000
-            }
+            type: DataTypes.STRING
         },
         query: {
             type: DataTypes.STRING

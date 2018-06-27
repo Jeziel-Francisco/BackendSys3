@@ -35,44 +35,27 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notEmpty: true,
-                max: 128
+                notEmpty: true
             }
         },
         fantasy: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                notEmpty: true,
-                max: 128
+                notEmpty: true
             }
         },
         legal: {
             type: DataTypes.BOOLEAN
         },
         registryFederal: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         registryState: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         registryMunicipal: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                max: 128
-            }
+            type: DataTypes.STRING
         },
         consumerFinal: {
             type: DataTypes.BOOLEAN

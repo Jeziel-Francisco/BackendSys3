@@ -37,8 +37,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         description: {
             type: DataTypes.STRING,
             validate: {
-                min: 3,
-                max: 120
+                min: 3
             }
         },
         package: {
@@ -47,8 +46,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         code: {
             type: DataTypes.STRING,
             validate: {
-                min: 3,
-                max: 120
+                min: 3
             }
         },
         priceCost: {
