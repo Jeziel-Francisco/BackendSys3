@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
+    "dev": "cross-env NODE_ENV=development cross-env JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
     "start": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK node dist/index",
     "gulp": "node_modules/.bin/gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,6 +26,7 @@
     "@types/morgan": "^1.7.35",
     "@types/node": "8.0.34",
     "@types/sequelize": "4.0.76",
+    "cross-env": "^5.2.0",
     "gulp": "3.9.1",
     "gulp-clean": "0.3.2",
     "gulp-typescript": "3.2.2",

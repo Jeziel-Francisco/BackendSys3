@@ -1,12 +1,13 @@
-import { IPersonAttributes } from "../../models/PersonModel";
+import { IAddressModel } from "../../models/AddressModel";
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
+import { IPersonAttributes } from "../../models/PersonModel";
 
 import Service from './service';
 
 class Business {
     constructor() { }
 
-    findById( db: IDbConnection , id: number) {
+    findById(db: IDbConnection, id: number) {
         return Service.findById(db, id);
     }
 
@@ -16,6 +17,10 @@ class Business {
 
     create(db: IDbConnection, person: IPersonAttributes) {
         return Service.create(db, person);
+    }
+
+    createBulk(db: IDbConnection, people: [IPersonAttributes]) {
+        return Service.createBulk(db, people);
     }
 
     update(db: IDbConnection, id: number, person: IPersonAttributes) {

@@ -82,7 +82,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         db.User.hasMany(db.Sale, { foreignKey: 'userId' });
         db.User.hasMany(db.Receive, { foreignKey: 'userId' });
         db.User.hasMany(db.Log, { foreignKey: 'userId' });
-
+        db.User.hasMany(db.Note, { foreignKey: 'userId' });
 
     }
 

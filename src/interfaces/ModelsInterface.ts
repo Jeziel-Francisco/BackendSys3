@@ -5,6 +5,7 @@ import { IEmailModel } from "../models/EmailModel";
 import { IEmailCompanyModel } from "../models/EmailCompanyModel";
 import { ILogModel } from "../models/LogModel";
 import { INcmModel } from "../models/NcmModel";
+import { INoteModel } from "../models/NoteModel";
 import { IPackageModel } from "../models/PackageModel";
 import { IPaymentReceiveModel } from "../models/PaymentReceiveModel";
 import { IPhoneModel } from "../models/PhoneModel";
@@ -26,6 +27,7 @@ export interface IModelsInterface {
   EmailCompany: IEmailCompanyModel;
   Log: ILogModel,
   Ncm: INcmModel;
+  Note: INoteModel;
   Package: IPackageModel;
   PaymentReceive: IPaymentReceiveModel,
   Person: IPersonModel;

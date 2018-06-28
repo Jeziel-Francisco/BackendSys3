@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
-import { UserRoutes, CompanyRoutes, PersonRoutes } from './routes/routes';
+import { UserRoutes, CompanyRoutes, PersonRoutes, NoteRoutes, AddressRoutes } from './routes/routes';
 
 import * as bodyParser from 'body-parser';
 
@@ -20,9 +20,11 @@ class App {
     }
 
     routes(express: express.Application) {
-        UserRoutes(express);
+        AddressRoutes(express);
         CompanyRoutes(express);
+        NoteRoutes(express);
         PersonRoutes(express);
+        UserRoutes(express);
     }
 }
 

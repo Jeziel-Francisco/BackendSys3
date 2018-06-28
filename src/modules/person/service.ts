@@ -16,6 +16,10 @@ class Service {
         return db.Person.create(person);
     }
 
+    createBulk(db: IDbConnection, people: IPersonAttributes[]) {
+        return db.Person.bulkCreate(people);
+    }
+
     async update(db: IDbConnection, id: number, person: IPersonAttributes) {
         let data: IPersonInstance = await db.Person.findById(id);
 

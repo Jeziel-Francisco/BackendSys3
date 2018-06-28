@@ -83,6 +83,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         db.Company.hasMany(db.User, { foreignKey: 'companyId' });
         db.Company.hasMany(db.EmailCompany, { foreignKey: 'companyId' });
         db.Company.hasMany(db.PhoneCompany, { foreignKey: 'companyId' });
+        db.Company.hasMany(db.Note, { foreignKey: 'companyId' });
     }
 
     return Company;

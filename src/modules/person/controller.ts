@@ -36,6 +36,15 @@ class Controller {
         }
     }
 
+    async createBulk(req: Request, res: Response) {
+        try {
+            let data = await Business.createBulk(req['context'], req.body);
+            onSuccessResponse(res, data);
+        } catch (error) {
+            onErrorResponse(res, error);
+        }
+    }
+
     async update(req: Request, res: Response) {
         try {
             let data: IPersonInstance = await Business.update(req['context'], req.params.id, req.body);
