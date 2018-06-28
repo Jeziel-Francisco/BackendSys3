@@ -5,6 +5,7 @@ import { IDbConnection } from "../interfaces/DbConnectionInterfaces";
 
 export interface IStateAttibutes {
     id?: number;
+    code?: number;
     name?: string;
     initials?: string;
     createdAt?: string;
@@ -23,6 +24,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
+            allowNull: false
+        },
+        code: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         name: {
