@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-linux": "cross-env NODE_ENV=development cross-env JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
+    "dev-linux": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
     "dev-windows": "cross-env NODE_ENV=development cross-env JWT_SECRET=CORINTHIANSKASDAK nodemon --delay 5 dist/index",
     "start": "NODE_ENV=development JWT_SECRET=CORINTHIANSKASDAK node dist/index",
     "gulp": "node_modules/.bin/gulp",

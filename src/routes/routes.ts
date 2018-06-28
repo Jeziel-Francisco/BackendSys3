@@ -4,6 +4,7 @@ import { Verify } from "../modules/auth/auth";
 import Context from "../middleware/context.middleware";
 
 import AddressCtrl from './../modules/address/controller';
+import companyCtrl from './../modules/company/controller';
 import NoteCtrl from './../modules/note/controller';
 import PersonCtrl from './../modules/person/controller';
 import UserCtrl from './../modules/user/controller';
@@ -20,6 +21,7 @@ export const AddressRoutes = (express: Application) => {
 }
 
 export const CompanyRoutes = (express: Application) => {
+    express.route('/api/v1/company').all(Verify).post(Context.setContext, companyCtrl.create);
 }
 
 export const NoteRoutes = (express: Application) => {
