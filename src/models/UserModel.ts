@@ -10,6 +10,7 @@ export interface IUserAttibutes {
     companyId?: number;
     password?: string;
     name?: string;
+    username?: string;
     email?: string;
     percentageDicount?: number;
     createdAt?: string;
@@ -44,6 +45,15 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             validate: {
                 notEmpty: true,
                 min: 3
+            }
+        },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                notEmpty: true,
+                isAlphanumeric: true
             }
         },
         email: {

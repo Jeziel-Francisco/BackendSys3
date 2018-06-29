@@ -9,33 +9,37 @@ class Business {
 
     constructor() { }
 
-    async findById(db: IDbConnection, id: number) {
-        return await Service.findById(db, id);
+    findById(db: IDbConnection, id: number) {
+        return Service.findById(db, id);
     }
 
-    async findByEmail(db: IDbConnection, email: string) {
-        return await Service.findByEmail(db, email);
+    findByEmail(db: IDbConnection, email: string) {
+        return Service.findByEmail(db, email);
     }
 
-    async create(db: IDbConnection, model: IUserAttibutes) {
-        return await Service.create(db, model);
+    findByUsername(db: IDbConnection, username: string) {
+        return Service.findByUsername(db, username);
     }
 
-    async update(db: IDbConnection, model: IUserAttibutes, id: number) {
-        return await Service.update(db, id, model);
+    create(db: IDbConnection, model: IUserAttibutes) {
+        return Service.create(db, model);
     }
 
-    async updatePassword(db: IDbConnection, password: string, id: number, ) {
-        return await Service.updatePassword(db, id, password);
+    update(db: IDbConnection, model: IUserAttibutes, id: number) {
+        return Service.update(db, id, model);
     }
 
-    async remove(db: IDbConnection, id: number) {
-        return await Service.remove(db, id);
+    updatePassword(db: IDbConnection, password: string, id: number, ) {
+        return Service.updatePassword(db, id, password);
     }
 
-    async auth(db: IDbConnection, auth: { email: string, password: string }) {
-        let user: IUserInstance = await this.findByEmail(db, auth.email);
-        if (!user) throw new Error('email or password invalid !');
+    remove(db: IDbConnection, id: number) {
+        return Service.remove(db, id);
+    }
+
+    async auth(db: IDbConnection, auth: { username: string, password: string }) {
+        let user: IUserInstance = await this.findByUsername(db, auth.username);
+        if (!user) throw new Error('username or password invalid !');
         let payload = {
             sub: user.get('id'),
             companyId: user.get('companyId')

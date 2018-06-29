@@ -27,6 +27,15 @@ class Controller {
         }
     }
 
+    async findByUsername(req: Request, res: Response) {
+        try {
+            let data: IUserInstance = await Business.findByUsername(req['context'], req.params.usernmae);
+            onSuccessResponse(res, data);
+        } catch (error) {
+            onErrorResponse(res, error);
+        }
+    }
+
     async create(req: Request, res: Response) {
         try {
             let data: IUserInstance = await Business.create(req['context'], req.body);

@@ -59,4 +59,4 @@ export const onSuccessResponse = (res: Response, data: any) => {
     res.status(httpStatus.OK).json({ payload: data });
 };
 
-export const JWT_SECRET: string = process.env.JWT_SECRET;
+export const JWT_SECRET: string = process.env.JWT_SECRET || 'A][-=daposd--KSSDJ23983=-=-skdllaowq';

@@ -1,6 +1,7 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
 import { UserRoutes, CompanyRoutes, PersonRoutes, NoteRoutes, AddressRoutes } from './routes/routes';
+import * as cors from 'cors';
 
 import * as bodyParser from 'body-parser';
 
@@ -15,8 +16,9 @@ class App {
 
     middleware(express: express.Application) {
         express.use(morgan('dev'));
+        express.use(cors());
         express.use(bodyParser.urlencoded({ extended: true }));
-        express.use(bodyParser.json())
+        express.use(bodyParser.json());
     }
 
     routes(express: express.Application) {

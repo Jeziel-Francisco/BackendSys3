@@ -8,11 +8,15 @@ class Service {
     constructor() { }
 
     findById(db: IDbConnection, id: number) {
-        return db.User.findById(id as number);
+        return db.User.findById(id);
     }
 
     findByEmail(db: IDbConnection, email: string) {
         return db.User.findOne({ where: { email: email } });
+    }
+
+    findByUsername(db: IDbConnection, username: string) {
+        return db.User.findOne({ where: { username: username } });
     }
 
     async create(db: IDbConnection, model: IUserAttibutes) {
