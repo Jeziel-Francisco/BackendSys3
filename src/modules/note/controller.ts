@@ -20,7 +20,7 @@ class Controller {
 
     async findByPerson(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes = await Business.findByPerson(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId, req.params.id);
+            let data: INoteAttibutes[] = await Business.findByPerson(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId, req.params.id);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -29,7 +29,7 @@ class Controller {
 
     async findAll(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes = await Business.findAll(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId);
+            let data: INoteAttibutes[] = await Business.findAll(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

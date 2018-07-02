@@ -20,7 +20,7 @@ class Controller {
 
     async findAll(req: Request, res: Response) {
         try {
-            let data: IPersonInstance = await Business.findAll(req['context'], PropertyToken(req).companyId);
+            let data: IPersonInstance[] = await Business.findAll(req['context'], PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

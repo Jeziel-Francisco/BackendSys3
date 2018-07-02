@@ -9,11 +9,30 @@ class Service {
     }
 
     findByPerson(db: IDbConnection, userId: number, companyId: number, personId: number) {
-        return db.Note.find({ where: { userId: userId, companyId: companyId, personId: personId } });
+        return db.Note.findAll({
+            where: {
+                userId: userId,
+                companyId: companyId,
+                personId: personId
+            },
+            attributes: ['id', 'title', 'body', 'dateRegistration'],
+        });
     }
 
     findAll(db: IDbConnection, userId: number, companyId: number) {
-        return db.Note.find({ where: { userId: userId, companyId: companyId } });
+        return db.Note.findAll({
+            where: {
+                userId: userId,
+                companyId: companyId
+            },
+            attributes: ['id', 'title', 'body', 'dateRegistration'],
+            include: [
+                {
+                    model: db.Person,
+                    attributes: ['name', 'fantasy', 'id']
+                }
+            ]
+        });
     }
 
     create(db: IDbConnection, note: INoteAttibutes) {

@@ -9,7 +9,7 @@ class Service {
     }
 
     findAll(db: IDbConnection, companyId: number) {
-        return db.Person.find({ where: { companyId: companyId } });
+        return db.Person.findAll({ where: { companyId: companyId } });
     }
 
     create(db: IDbConnection, person: IPersonAttributes) {
