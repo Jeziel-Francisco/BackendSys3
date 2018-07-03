@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import { UserRoutes, CompanyRoutes, PersonRoutes, NoteRoutes, AddressRoutes } from './routes/routes';
 import * as cors from 'cors';
+import * as helmet from 'helmet';
 
 import * as bodyParser from 'body-parser';
 
@@ -15,7 +16,7 @@ class App {
     }
 
     middleware(express: express.Application) {
-        express.disable('x-powered-by');
+        express.use(helmet({ hidePoweredBy: true }));
         express.use(morgan('dev'));
         express.use(cors());
         express.use(bodyParser.urlencoded({ extended: true }));

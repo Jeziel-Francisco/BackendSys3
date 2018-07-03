@@ -47,9 +47,9 @@ export const PersonRoutes = (express: Application) => {
 
 export const UserRoutes = (express: Application) => {
     express.route('/api/v1/user/findbyid').all(Verify).get(Context.setContext, UserCtrl.findById);
-    express.route('/api/v1/user/username').all(Verify).post(Context.setContext, UserCtrl.findByUsername);
+    express.route('/api/v1/user/username/:username').get(Context.setContext, UserCtrl.findByUsername);
 
-    express.route('/api/v1/user/findbyemail').all(Verify).post(Context.setContext, UserCtrl.findByEmail);
+    express.route('/api/v1/user/findbyemail').post(Context.setContext, UserCtrl.findByEmail);
     express.route('/api/v1/user').post(Context.setContext, UserCtrl.create);
     express.route('/api/v1/user/auth').post(Context.setContext, UserCtrl.auth);
 

@@ -77,8 +77,8 @@ class Controller {
 
     async auth(req: Request, res: Response) {
         try {
-            let token: string = await Business.auth(req['context'], req.body);
-            onSuccessResponse(res, { token: token });
+            let token = await Business.auth(req['context'], req.body);
+            onSuccessResponse(res, token);
         } catch (error) {
             onErrorResponse(res, error);
         }

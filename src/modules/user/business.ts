@@ -45,9 +45,12 @@ class Business {
             companyId: user.get('companyId')
         };
         let token: any = await Sign(payload);
-        token.payload.companyId = user.get('companyId');
-        token.payload.userId = user.get('id');
-        return token;
+        
+        return {
+            companyId: user.get('companyId'),
+            userId: user.get('id'),
+            token: token
+        };
     }
 }
 
