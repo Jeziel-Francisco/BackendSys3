@@ -6,10 +6,6 @@ import Service from './service';
 class Business {
     constructor() { }
 
-    findByPersonId(db: IDbConnection, personId: number) {
-        return Service.findByPersonId(db, personId);
-    }
-
     create(db: IDbConnection, address: IAddressAttibutes) {
         return Service.create(db, address);
     }

@@ -11,7 +11,7 @@ class Controller {
 
     async findById(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes = await Business.findById(req['context'], req.params.id);
+            let data: INoteAttibutes = await Business.findById(req['context'], req.params.id, PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -37,8 +37,12 @@ class Controller {
     }
 
     async create(req: Request, res: Response) {
+        let note: INoteAttibutes = req.body;
+        note.companyId = PropertyToken(req).companyId;
+        note.userId = PropertyToken(req).sub;
+
         try {
-            let data: INoteAttibutes = await Business.create(req['context'], req.body);
+            let data: INoteAttibutes = await Business.create(req['context'], note);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -47,7 +51,7 @@ class Controller {
 
     async update(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes = await Business.update(req['context'], req.params.id, req.body);
+            let data: INoteAttibutes = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -56,7 +60,7 @@ class Controller {
 
     async remove(req: Request, res: Response) {
         try {
-            let data = await Business.remove(req['context'], req.params.id);
+            let data = await Business.remove(req['context'], req.params.id, PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

@@ -4,8 +4,15 @@ import { INoteAttibutes } from "../../models/NoteModel";
 class Service {
     constructor() { }
 
-    findById(db: IDbConnection, id: number) {
-        return db.Note.findById(id);
+    findById(db: IDbConnection, id: number, userId: number, companyId: number) {
+        return db.Note.findOne({
+            where: {
+                id: id,
+                userId: userId,
+                companyId: companyId
+            },
+            attributes: ['id', 'title', 'body', 'dateRegistration'],
+        });
     }
 
     findByPerson(db: IDbConnection, userId: number, companyId: number, personId: number) {
@@ -39,14 +46,28 @@ class Service {
         return db.Note.create(note);
     }
 
-    async update(db: IDbConnection, id: number, note: INoteAttibutes) {
-        let data = await db.Note.findById(id);
+    async update(db: IDbConnection, id: number, note: INoteAttibutes, userId: number, companyId: number) {
+        let data = await db.Note.findOne({
+            where: {
+                id: id,
+                userId: userId,
+                companyId: companyId
+            },
+            attributes: ['id', 'title', 'body', 'dateRegistration']
+        });
         if (!data) throw new Error('Id not found');
         return await data.update(note);
     }
 
-    async remove(db: IDbConnection, id: number) {
-        let data = await db.Note.findById(id);
+    async remove(db: IDbConnection, id: number, userId: number, companyId: number) {
+        let data = await db.Note.findOne({
+            where: {
+                id: id,
+                userId: userId,
+                companyId: companyId
+            },
+            attributes: ['id', 'title', 'body', 'dateRegistration']
+        });
         if (!data) throw new Error('Id not found');
         return await data.destroy();
     }

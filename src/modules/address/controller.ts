@@ -7,15 +7,6 @@ import { onSuccessResponse, onErrorResponse } from '../../utils/utils';
 class Controller {
     constructor() { }
 
-    async findByPersonId(req: Request, res: Response) {
-        try {
-            let data: IAddressAttibutes = await Business.findByPersonId(req['context'], req.params.id);
-            onSuccessResponse(res, data);
-        } catch (error) {
-            onErrorResponse(res, error);
-        }
-    }
-
     async create(req: Request, res: Response) {
         try {
             let data: IAddressAttibutes = await Business.create(req['context'], req.body);

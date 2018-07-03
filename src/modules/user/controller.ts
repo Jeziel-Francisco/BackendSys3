@@ -18,6 +18,7 @@ class Controller {
         }
     }
 
+    // sem rota de authenticacao
     async findByEmail(req: Request, res: Response) {
         try {
             let data: IUserInstance = await Business.findByEmail(req['context'], req.body.email);
@@ -27,6 +28,7 @@ class Controller {
         }
     }
 
+    // sem rota de authenticacao
     async findByUsername(req: Request, res: Response) {
         try {
             let data: IUserInstance = await Business.findByUsername(req['context'], req.params.usernmae);
@@ -36,6 +38,7 @@ class Controller {
         }
     }
 
+    // sem rota de authenticacao
     async create(req: Request, res: Response) {
         try {
             let data: IUserInstance = await Business.create(req['context'], req.body);

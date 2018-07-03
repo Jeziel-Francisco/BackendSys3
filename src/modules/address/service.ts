@@ -3,11 +3,7 @@ import { IAddressAttibutes } from "../../models/AddressModel";
 
 class Service {
     constructor() { }
-
-    findByPersonId(db: IDbConnection, personId: number) {
-        return db.Address.find({ where: { personId: personId } });
-    }
-
+    
     create(db: IDbConnection, address: IAddressAttibutes) {
         return db.Address.create(address);
     }

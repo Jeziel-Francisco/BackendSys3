@@ -7,8 +7,8 @@ import Service from './service';
 class Business {
     constructor() { }
 
-    findById(db: IDbConnection, id: number) {
-        return Service.findById(db, id);
+    findById(db: IDbConnection, id: number, companyId: number) {
+        return Service.findById(db, id, companyId);
     }
 
     findAll(db: IDbConnection, companyId: number) {
@@ -23,8 +23,8 @@ class Business {
         return Service.createBulk(db, people);
     }
 
-    update(db: IDbConnection, id: number, person: IPersonAttributes) {
-        return Service.update(db, id, person);
+    update(db: IDbConnection, id: number, person: IPersonAttributes, companyId: number) {
+        return Service.update(db, id, person, companyId);
     }
 }
 

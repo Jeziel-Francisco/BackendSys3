@@ -15,6 +15,7 @@ class App {
     }
 
     middleware(express: express.Application) {
+        express.disable('x-powered-by');
         express.use(morgan('dev'));
         express.use(cors());
         express.use(bodyParser.urlencoded({ extended: true }));

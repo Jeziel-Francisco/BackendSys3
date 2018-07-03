@@ -10,8 +10,6 @@ import PersonCtrl from './../modules/person/controller';
 import UserCtrl from './../modules/user/controller';
 
 export const AddressRoutes = (express: Application) => {
-    express.route('/api/v1/address/findbypersonid/:id').all(Verify).get(Context.setContext, AddressCtrl.findByPersonId);
-
     express.route('/api/v1/address').all(Verify).post(Context.setContext, AddressCtrl.create);
     express.route('/api/v1/address/createbulk').all(Verify).post(Context.setContext, AddressCtrl.createBulk);
 

@@ -44,7 +44,10 @@ class Business {
             sub: user.get('id'),
             companyId: user.get('companyId')
         };
-        return await Sign(payload)
+        let token: any = await Sign(payload);
+        token.payload.companyId = user.get('companyId');
+        token.payload.userId = user.get('id');
+        return token;
     }
 }
 
