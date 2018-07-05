@@ -1,3 +1,4 @@
+import { IAddressCompanyModel } from "../models/AddressCompanyModel";
 import { IAddressModel } from "../models/AddressModel";
 import { ICityModel } from "../models/CityModel";
 import { ICompanyModel } from "../models/CompanyModel";
@@ -21,6 +22,7 @@ import { IUserModel } from "../models/UserModel";
 
 export interface IModelsInterface {
   Address: IAddressModel;
+  AddressCompany: IAddressCompanyModel;
   City: ICityModel;
   Company: ICompanyModel;
   Email: IEmailModel;

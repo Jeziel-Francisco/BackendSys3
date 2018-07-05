@@ -15,7 +15,6 @@ export interface ICompanyAttributes {
     nameResponsible?: string;
     typeCertificate?: string;
     typeEmissionNote?: string;
-    addressId?: number;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -67,10 +66,6 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         typeEmissionNote: {
             type: DataTypes.STRING
         },
-        addressId: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
     }, {
             tableName: 'companies'
         });
@@ -84,6 +79,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         db.Company.hasMany(db.EmailCompany, { foreignKey: 'companyId' });
         db.Company.hasMany(db.PhoneCompany, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Note, { foreignKey: 'companyId' });
+        db.Company.hasMany(db.AddressCompany, { foreignKey: 'companyId' });
     }
 
     return Company;

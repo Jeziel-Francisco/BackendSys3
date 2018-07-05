@@ -3,7 +3,7 @@ import * as Sequelize from "sequelize";
 import { IBaseModelInterface } from "../interfaces/BaseModelInterface";
 import { IDbConnection } from "../interfaces/DbConnectionInterfaces";
 
-export interface IAddressAttibutes {
+export interface IAddressCompanyAttibutes {
     id?: number;
     cep?: string;
     place?: string;
@@ -15,16 +15,17 @@ export interface IAddressAttibutes {
     cityId?: number;
     createdAt?: string;
     updatedAt?: string;
+    companyId?: number;
 }
 
-export interface IAddressInstance extends IAddressAttibutes, Sequelize.Instance<IAddressAttibutes> {
+export interface IAddressCompanyInstance extends IAddressCompanyAttibutes, Sequelize.Instance<IAddressCompanyAttibutes> {
     isPassword(encodedPassword: string, password: string): boolean;
 }
 
-export interface IAddressModel extends IBaseModelInterface, Sequelize.Model<IAddressInstance, IAddressAttibutes> { }
+export interface IAddressCompanyModel extends IBaseModelInterface, Sequelize.Model<IAddressCompanyInstance, IAddressCompanyAttibutes> { }
 
-export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes): IAddressModel => {
-    const Address: IAddressModel = sequelize.define('Address', {
+export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes): IAddressCompanyModel => {
+    const AddressCompany: IAddressCompanyModel = sequelize.define('AddressCompany', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -53,22 +54,22 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        personId: {
+        companyId: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {
-            tableName: 'address'
+            tableName: 'address_companies'
         }
 
     );
 
-    Address.associate = (db: IDbConnection) => {
-        db.Address.belongsTo(db.Person, { foreignKey: 'personId' });
-        db.Address.belongsTo(db.City, { foreignKey: 'cityId' });
+    AddressCompany.associate = (db: IDbConnection) => {
+        db.AddressCompany.belongsTo(db.Company, { foreignKey: 'companyId' });
+        db.AddressCompany.belongsTo(db.City, { foreignKey: 'cityId' });
 
 
     }
 
-    return Address;
+    return AddressCompany;
 }

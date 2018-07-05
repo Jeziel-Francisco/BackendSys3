@@ -3,6 +3,7 @@ import Service from "./service";
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 import { IUserAttibutes, IUserInstance } from "../../models/UserModel";
 import { Sign } from "../auth/auth";
+import { compareSync } from "bcryptjs";
 
 
 class Business {
@@ -39,11 +40,14 @@ class Business {
 
     async auth(db: IDbConnection, auth: { username: string, password: string }) {
         let user: IUserInstance = await this.findByUsername(db, auth.username);
-        if (!user) throw new Error('username or password invalid !');
+        if (!user) throw new Error('Username or Password invalid !');
         let payload = {
             sub: user.get('id'),
             companyId: user.get('companyId')
         };
+        
+        if (!compareSync(auth.password,user.password)) throw new Error('Username or Password invalid !')
+
         let token: any = await Sign(payload);
         
         return {
