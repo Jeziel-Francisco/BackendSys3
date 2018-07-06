@@ -48,7 +48,7 @@ class Business {
             companyId: user.get('companyId')
         };
 
-        if (compareSync(auth.password, user.password)) throw new Error('Username or Password Invalid !')
+        if (!compareSync(auth.password, user.password)) throw new Error('Username or Password Invalid !')
 
         let token: any = await Sign(payload);
 
