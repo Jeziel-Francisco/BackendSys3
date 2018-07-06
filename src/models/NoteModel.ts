@@ -30,13 +30,16 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         personId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         userId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         companyId: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         title: {
             type: DataTypes.STRING

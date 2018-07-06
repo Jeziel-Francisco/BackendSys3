@@ -6,6 +6,7 @@ import { Sign } from "../auth/auth";
 import CompanyService from './../company/service';
 import { ICompanyAttributes } from "../../models/CompanyModel";
 
+
 class Business {
 
     constructor() { }
@@ -40,13 +41,11 @@ class Business {
 
     async auth(db: IDbConnection, auth: { username: string, password: string }) {
         let user: IUserInstance = await this.findByUsername(db, auth.username);
-        if (!user) throw new Error('username or password invalid !');
-
+        if (!user) throw new Error('Username or Password invalid !');
         let payload = {
             sub: user.get('id'),
             companyId: user.get('companyId')
         };
-
 
         let token: any = await Sign(payload);
 
