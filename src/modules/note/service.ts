@@ -12,6 +12,9 @@ class Service {
                 companyId: companyId
             },
             attributes: ['id', 'title', 'body', 'dateRegistration'],
+            order: [
+                ['dateRegistration', 'DESC']
+            ]
         });
     }
 
@@ -23,6 +26,9 @@ class Service {
                 personId: personId
             },
             attributes: ['id', 'title', 'body', 'dateRegistration'],
+            order: [
+                ['dateRegistration', 'DESC']
+            ]
         });
     }
 
@@ -38,6 +44,9 @@ class Service {
                     model: db.Person,
                     attributes: ['name', 'fantasy', 'id']
                 }
+            ],
+            order: [
+                ['dateRegistration', 'DESC']
             ]
         });
     }
