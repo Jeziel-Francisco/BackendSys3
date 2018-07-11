@@ -1,7 +1,7 @@
 import Business from './business';
 
 
-import { INoteAttibutes } from '../../models/NoteModel';
+import { INoteAttibutes, INoteInstance } from '../../models/NoteModel';
 import { Request, Response } from 'express';
 import { onSuccessResponse, onErrorResponse } from '../../utils/utils';
 import { PropertyToken } from '../auth/auth';
@@ -11,7 +11,7 @@ class Controller {
 
     async findById(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes = await Business.findById(req['context'], req.params.id, PropertyToken(req).sub, PropertyToken(req).companyId);
+            let data: INoteInstance = await Business.findById(req['context'], req.params.id, PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -20,7 +20,7 @@ class Controller {
 
     async findByPerson(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes[] = await Business.findByPerson(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId, req.params.id);
+            let data: INoteInstance[] = await Business.findByPerson(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId, req.params.id);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -29,7 +29,7 @@ class Controller {
 
     async findAll(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes[] = await Business.findAll(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId);
+            let data: INoteInstance[] = await Business.findAll(req['context'], PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -42,7 +42,7 @@ class Controller {
         note.userId = PropertyToken(req).sub;
 
         try {
-            let data: INoteAttibutes = await Business.create(req['context'], note);
+            let data: INoteInstance = await Business.create(req['context'], note);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -51,7 +51,7 @@ class Controller {
 
     async update(req: Request, res: Response) {
         try {
-            let data: INoteAttibutes = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).sub, PropertyToken(req).companyId);
+            let data: INoteInstance = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).sub, PropertyToken(req).companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

@@ -61,6 +61,11 @@ export const UserRoutes = (express: Application) => {
 }
 
 export const SaleRoutes = (express: Application) => {
-    express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.create);
     express.route('/api/v1/sale/findbycompany').all(Verify).get(Context.setContext, SaleCtrl.findByCompanyId);
+
+    express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.createSale);
+    express.route('/api/v1/sale/product').all(Verify).post(Context.setContext,SaleCtrl.createSaleProduct);
+    express.route('/api/v1/sale/product/list').all(Verify).post(Context.setContext,SaleCtrl.createBulkSaleProduct);
+
+    express.route('/api/v1/sale/:id').all(Verify).put(Context.setContext, SaleCtrl.updateSale);
 }

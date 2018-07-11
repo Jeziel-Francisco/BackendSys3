@@ -1,5 +1,6 @@
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
-import { ISaleAttibutes } from "../../models/SaleModel";
+import { ISaleAttibutes, ISaleInstance } from "../../models/SaleModel";
+import { ISaleProductAttibutes } from "../../models/SaleProductModel";
 
 class Service {
     constructor() { }
@@ -22,12 +23,28 @@ class Service {
     }
 
 
-    create(db: IDbConnection, sale: ISaleAttibutes) {
+    createSale(db, sale: ISaleAttibutes) {
         return db.Sale.create(sale);
     }
 
-    async update(db: IDbConnection, id: number, sale: ISaleAttibutes, companyId: number) {
+    async updateSale(db: IDbConnection, id: number, companyId: number, sale: ISaleAttibutes) {
+        let data: ISaleInstance = await db.Sale.findOne({
+            where: {
+                id: id,
+                companyId: companyId
+            }
+        });
+        if (!data) throw new Error(`Id ${id} not found !`);
 
+        return data.update(sale);
+    }
+
+    createSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes) {
+        return db.SaleProduct.create(saleProduct);
+    }
+
+    createBulkSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes[]) {
+        return db.SaleProduct.bulkCreate(saleProduct);
     }
 }
 

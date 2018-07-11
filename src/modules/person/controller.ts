@@ -40,7 +40,7 @@ class Controller {
 
     async createBulk(req: Request, res: Response) {
         try {
-            let data = await Business.createBulk(req['context'], req.body);
+            let data: IPersonInstance[] = await Business.createBulk(req['context'], req.body);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

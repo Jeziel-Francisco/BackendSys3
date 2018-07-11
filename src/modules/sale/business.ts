@@ -2,6 +2,7 @@ import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 
 import Service from './service';
 import { ISaleAttibutes } from "../../models/SaleModel";
+import { ISaleProductAttibutes } from "../../models/SaleProductModel";
 
 class Business {
     constructor() { }
@@ -10,11 +11,21 @@ class Business {
         return Service.findByCompanyId(db, companyId);
     }
 
-    create(db: IDbConnection, sale: ISaleAttibutes) {
-        return Service.create(db, sale);
+    createSale(db: IDbConnection, sale: ISaleAttibutes) {
+        return Service.createSale(db, sale);
     }
 
-    update(db: IDbConnection, id: number, person: ISaleAttibutes, companyId: number) {
+    updateSale(db: IDbConnection, id: number, companyId: number, sale: ISaleAttibutes) {
+        return Service.updateSale(db, id, companyId, sale);
+    }
+
+
+    createSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes) {
+        return Service.createSaleProduct(db, saleProduct);
+    }
+
+    createBulkSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes[]) {
+        return Service.createBulkSaleProduct(db, saleProduct);
     }
 }
 

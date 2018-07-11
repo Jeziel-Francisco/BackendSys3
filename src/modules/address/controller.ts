@@ -1,6 +1,6 @@
 import Business from './business';
 
-import { IAddressAttibutes } from "../../models/AddressModel";
+import { IAddressInstance } from "../../models/AddressModel";
 import { Request, Response } from "express";
 import { onSuccessResponse, onErrorResponse } from '../../utils/utils';
 
@@ -9,7 +9,7 @@ class Controller {
 
     async create(req: Request, res: Response) {
         try {
-            let data: IAddressAttibutes = await Business.create(req['context'], req.body);
+            let data: IAddressInstance = await Business.create(req['context'], req.body);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -18,7 +18,7 @@ class Controller {
 
     async createBulk(req: Request, res: Response) {
         try {
-            let data: IAddressAttibutes[] = await Business.createBulk(req['context'], req.body);
+            let data: IAddressInstance[] = await Business.createBulk(req['context'], req.body);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -27,7 +27,7 @@ class Controller {
 
     async update(req: Request, res: Response) {
         try {
-            let data: IAddressAttibutes = await Business.update(req['context'], req.params.id, req.body);
+            let data: IAddressInstance = await Business.update(req['context'], req.params.id, req.body);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
