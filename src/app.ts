@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as morgan from 'morgan';
-import { UserRoutes, CompanyRoutes, PersonRoutes, NoteRoutes, AddressRoutes } from './routes/routes';
+import { UserRoutes, CompanyRoutes, PersonRoutes, NoteRoutes, AddressRoutes, SaleRoutes } from './routes/routes';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
 
@@ -29,6 +29,7 @@ class App {
         NoteRoutes(express);
         PersonRoutes(express);
         UserRoutes(express);
+        SaleRoutes(express);
     }
 }
 

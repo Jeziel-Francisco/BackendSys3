@@ -6,7 +6,7 @@ import { IDbConnection } from "../interfaces/DbConnectionInterfaces";
 export interface ISaleAttibutes {
     id?: number;
     emission?: Date;
-    tipe?: number;
+    type?: number;
     total?: number;
     valueDicount?: number;
     percentageDiscount?: number;
@@ -36,7 +36,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.DATE,
             defaultValue: new Date()
         },
-        tipe: {
+        type: {
             type: DataTypes.INTEGER
         },
         total: {

@@ -7,6 +7,7 @@ import AddressCtrl from './../modules/address/controller';
 import companyCtrl from './../modules/company/controller';
 import NoteCtrl from './../modules/note/controller';
 import PersonCtrl from './../modules/person/controller';
+import SaleCtrl from './../modules/sale/controller';
 import UserCtrl from './../modules/user/controller';
 
 export const AddressRoutes = (express: Application) => {
@@ -57,4 +58,8 @@ export const UserRoutes = (express: Application) => {
     express.route('/api/v1/user/update/password').all(Verify).put(Context.setContext, UserCtrl.updatePassword);
 
     express.route('/api/v1/user').all(Verify).delete(Context.setContext, UserCtrl.remove);
+}
+
+export const SaleRoutes = (express: Application) => {
+    express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.create);
 }
