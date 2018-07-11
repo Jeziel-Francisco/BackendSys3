@@ -9,8 +9,14 @@ import { ISaleAttibutes } from '../../models/SaleModel';
 class Controller {
     constructor() { }
 
-    async findById(req: Request, res: Response) {
-
+    async findByCompanyId(req: Request, res: Response) {
+        let companyId = PropertyToken(req).companyId;
+        try {
+            let data: ISaleAttibutes[] = await Business.findByCompanyId(req['context'], companyId);
+            onSuccessResponse(res, data);
+        } catch (error) {
+            onErrorResponse(res, error);
+        }
     }
 
     async create(req: Request, res: Response) {

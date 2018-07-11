@@ -6,7 +6,8 @@ import { ISaleAttibutes } from "../../models/SaleModel";
 class Business {
     constructor() { }
 
-    findById(db: IDbConnection, id: number, companyId: number) {
+    findByCompanyId(db: IDbConnection, companyId: number) {
+        return Service.findByCompanyId(db, companyId);
     }
 
     create(db: IDbConnection, sale: ISaleAttibutes) {

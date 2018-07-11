@@ -4,8 +4,21 @@ import { ISaleAttibutes } from "../../models/SaleModel";
 class Service {
     constructor() { }
 
-    findById(db: IDbConnection, id: number, companyId: number) {
-    
+    findByCompanyId(db: IDbConnection, companyId: number) {
+        return db.Sale.findAll({
+            where: {
+                companyId: companyId
+            },
+            include: [
+                {
+                    model: db.Person,
+                    attributes: ['id', 'name', 'fantasy', 'legal', 'registryFederal', 'registryState', 'consumerFinal']
+                },
+                {
+                    model: db.Product
+                }
+            ]
+        })
     }
 
 
@@ -14,7 +27,7 @@ class Service {
     }
 
     async update(db: IDbConnection, id: number, sale: ISaleAttibutes, companyId: number) {
-        
+
     }
 }
 

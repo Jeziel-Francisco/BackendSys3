@@ -62,4 +62,5 @@ export const UserRoutes = (express: Application) => {
 
 export const SaleRoutes = (express: Application) => {
     express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.create);
+    express.route('/api/v1/sale/findbycompany').all(Verify).get(Context.setContext, SaleCtrl.findByCompanyId);
 }
