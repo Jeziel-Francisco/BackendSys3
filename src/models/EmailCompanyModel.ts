@@ -28,20 +28,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                isEmail: true,
-                notEmpty: true
-            }
+            type: DataTypes.STRING
         },
         contact: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                min: 3
-            }
+            type: DataTypes.STRING
         },
         active: {
             type: DataTypes.BOOLEAN,
@@ -52,7 +42,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         }
     }, {
-            tableName: 'emailCompanies'
+            tableName: 'emails_companies'
         }
 
     );

@@ -20,53 +20,44 @@ export const AddressRoutes = (express: Application) => {
 }
 
 export const CompanyRoutes = (express: Application) => {
+    express.route('/api/v1/company/user/:userId').all(Verify).get(Context.setContext, companyCtrl.findByUserId);
+
     express.route('/api/v1/company').all(Verify).post(Context.setContext, companyCtrl.create);
-    express.route('/api/v1/company/user').all(Verify).get(Context.setContext, companyCtrl.findByUserId);
 }
 
 export const NoteRoutes = (express: Application) => {
-    express.route('/api/v1/note/:id').all(Verify).get(Context.setContext, NoteCtrl.findById);
-    express.route('/api/v1/note/findbyperson/:id').all(Verify).get(Context.setContext, NoteCtrl.findByPerson);
-    express.route('/api/v1/note').all(Verify).get(Context.setContext, NoteCtrl.findAll);
+    express.route('/api/v1/note/person/:companyId/:personId').all(Verify).get(Context.setContext, NoteCtrl.findByPerson);
+    express.route('/api/v1/note/company/:companyId').all(Verify).get(Context.setContext, NoteCtrl.findAll);
 
     express.route('/api/v1/note').all(Verify).post(Context.setContext, NoteCtrl.create);
 
     express.route('/api/v1/note/:id').all(Verify).put(Context.setContext, NoteCtrl.update);
-
-    express.route('/api/v1/note/:id').all(Verify).delete(Context.setContext, NoteCtrl.remove);
 }
 
 export const PersonRoutes = (express: Application) => {
-    express.route('/api/v1/person/findbyid/:id').all(Verify).get(Context.setContext, PersonCtrl.findById);
-    express.route('/api/v1/person').all(Verify).get(Context.setContext, PersonCtrl.findAll);
+    express.route('/api/v1/person/company/:companyId').all(Verify).get(Context.setContext, PersonCtrl.findAll);
 
     express.route('/api/v1/person').all(Verify).post(Context.setContext, PersonCtrl.create);
-    express.route('/api/v1/person/bulk').all(Verify).post(Context.setContext, PersonCtrl.createBulk);
-
 
     express.route('/api/v1/person/:id').all(Verify).put(Context.setContext, PersonCtrl.update);
 }
 
+export const SaleRoutes = (express: Application) => {
+
+    express.route('/api/v1/sale/companies').all(Verify).post(Context.setContext, SaleCtrl.findAllCompanyUsers);
+    express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.create);
+
+    express.route('/api/v1/sale/:id').all(Verify).put(Context.setContext, SaleCtrl.update);
+}
+
 export const UserRoutes = (express: Application) => {
-    express.route('/api/v1/user/findbyid').all(Verify).get(Context.setContext, UserCtrl.findById);
+    express.route('/api/v1/user/:id').all(Verify).get(Context.setContext, UserCtrl.findById);
     express.route('/api/v1/user/username/:username').get(Context.setContext, UserCtrl.findByUsername);
 
-    express.route('/api/v1/user/findbyemail').post(Context.setContext, UserCtrl.findByEmail);
+    express.route('/api/v1/user/email').post(Context.setContext, UserCtrl.findByEmail);
     express.route('/api/v1/user').post(Context.setContext, UserCtrl.create);
     express.route('/api/v1/user/auth').post(Context.setContext, UserCtrl.auth);
 
-    express.route('/api/v1/user').all(Verify).put(Context.setContext, UserCtrl.update);
-    express.route('/api/v1/user/update/password').all(Verify).put(Context.setContext, UserCtrl.updatePassword);
-
-    express.route('/api/v1/user').all(Verify).delete(Context.setContext, UserCtrl.remove);
-}
-
-export const SaleRoutes = (express: Application) => {
-    express.route('/api/v1/sale/:companyId').all(Verify).get(Context.setContext, SaleCtrl.findByCompanyId);
-
-    express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.createSale);
-    express.route('/api/v1/sale/product').all(Verify).post(Context.setContext, SaleCtrl.createSaleProduct);
-    express.route('/api/v1/sale/product/list').all(Verify).post(Context.setContext, SaleCtrl.createBulkSaleProduct);
-
-    express.route('/api/v1/sale/:id').all(Verify).put(Context.setContext, SaleCtrl.updateSale);
+    express.route('/api/v1/user/:id').all(Verify).put(Context.setContext, UserCtrl.update);
+    express.route('/api/v1/user/password/:id').all(Verify).put(Context.setContext, UserCtrl.updatePassword);
 }

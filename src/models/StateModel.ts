@@ -27,25 +27,13 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         code: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER
         },
         name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                min: 3
-            }
+            type: DataTypes.STRING
         },
         initials: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                min: 2,
-                max: 2
-            }
+            type: DataTypes.STRING
         }
     }, {
             tableName: 'states'

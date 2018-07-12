@@ -32,18 +32,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            type: DataTypes.STRING
         },
         fantasy: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            type: DataTypes.STRING
         },
         legal: {
             type: DataTypes.BOOLEAN

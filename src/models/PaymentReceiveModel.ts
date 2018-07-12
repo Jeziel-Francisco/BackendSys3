@@ -55,7 +55,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         }
     }, {
-            tableName: 'paymentsReceive'
+            tableName: 'payments_receipts'
         }
 
     );

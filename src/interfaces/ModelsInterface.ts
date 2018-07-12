@@ -5,7 +5,6 @@ import { ICompanyModel } from "../models/CompanyModel";
 import { ICompanyUserModel } from "../models/CompanyUserModel";
 import { IEmailModel } from "../models/EmailModel";
 import { IEmailCompanyModel } from "../models/EmailCompanyModel";
-import { ILogModel } from "../models/LogModel";
 import { INcmModel } from "../models/NcmModel";
 import { INoteModel } from "../models/NoteModel";
 import { IPackageModel } from "../models/PackageModel";
@@ -29,7 +28,6 @@ export interface IModelsInterface {
   CompanyUser: ICompanyUserModel;
   Email: IEmailModel;
   EmailCompany: IEmailCompanyModel;
-  Log: ILogModel,
   Ncm: INcmModel;
   Note: INoteModel;
   Package: IPackageModel;

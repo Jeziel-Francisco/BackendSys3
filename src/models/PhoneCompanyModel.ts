@@ -28,19 +28,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         phone: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            type: DataTypes.STRING
         },
         contact: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                min: 3
-            }
+            type: DataTypes.STRING
         },
         active: {
             type: DataTypes.BOOLEAN,
@@ -51,7 +42,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         }
     }, {
-            tableName: 'phoneCompanies'
+            tableName: 'phones_companies'
         }
 
     );

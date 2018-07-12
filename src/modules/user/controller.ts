@@ -11,17 +11,7 @@ class Controller {
 
     async findById(req: Request, res: Response) {
         try {
-            let data: IUserInstance = await Business.findById(req['context'], PropertyToken(req).sub);
-            onSuccessResponse(res, data);
-        } catch (error) {
-            onErrorResponse(res, error);
-        }
-    }
-
-    // sem rota de authenticacao
-    async findByEmail(req: Request, res: Response) {
-        try {
-            let data: IUserInstance = await Business.findByEmail(req['context'], req.body.email);
+            let data: IUserInstance = await Business.findById(req['context'], req.params.id, PropertyToken(req).sub);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -32,6 +22,16 @@ class Controller {
     async findByUsername(req: Request, res: Response) {
         try {
             let data: IUserInstance = await Business.findByUsername(req['context'], req.params.username);
+            onSuccessResponse(res, data);
+        } catch (error) {
+            onErrorResponse(res, error);
+        }
+    }
+
+    // sem rota de authenticacao
+    async findByEmail(req: Request, res: Response) {
+        try {
+            let data: IUserInstance = await Business.findByEmail(req['context'], req.body.email);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -49,9 +49,18 @@ class Controller {
         }
     }
 
+    async auth(req: Request, res: Response) {
+        try {
+            let token = await Business.auth(req['context'], req.body);
+            onSuccessResponse(res, token);
+        } catch (error) {
+            onErrorResponse(res, error);
+        }
+    }
+
     async update(req: Request, res: Response) {
         try {
-            let data = await Business.update(req['context'], req.body, PropertyToken(req).sub);
+            let data = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).sub);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -60,26 +69,8 @@ class Controller {
 
     async updatePassword(req: Request, res: Response) {
         try {
-            let data = await Business.updatePassword(req['context'], req.body.password, PropertyToken(req).sub);
+            let data = await Business.updatePassword(req['context'], req.params.id, req.body.password, PropertyToken(req).sub);
             onSuccessResponse(res, data);
-        } catch (error) {
-            onErrorResponse(res, error);
-        }
-    }
-
-    async remove(req: Request, res: Response) {
-        try {
-            let data = await Business.remove(req['context'], PropertyToken(req).sub);
-            onSuccessResponse(res, data);
-        } catch (error) {
-            onErrorResponse(res, error);
-        }
-    }
-
-    async auth(req: Request, res: Response) {
-        try {
-            let token = await Business.auth(req['context'], req.body);
-            onSuccessResponse(res, token);
         } catch (error) {
             onErrorResponse(res, error);
         }

@@ -12,7 +12,8 @@ class Business {
 
     constructor() { }
 
-    findById(db: IDbConnection, id: number) {
+    findById(db: IDbConnection, userId: number, id: number) {
+        if (userId != id) throw new Error(`Id ${userId} not found !`);
         return Service.findById(db, id);
     }
 
@@ -24,16 +25,18 @@ class Business {
         return Service.findByUsername(db, username);
     }
 
-    create(db: IDbConnection, model: IUserAttibutes) {
-        return Service.create(db, model);
+    create(db: IDbConnection, user: IUserAttibutes) {
+        return Service.create(db, user);
     }
 
-    update(db: IDbConnection, model: IUserAttibutes, id: number) {
-        return Service.update(db, id, model);
+    update(db: IDbConnection, userIdParam: number, user: IUserAttibutes, userIdAuth: number) {
+        if (userIdParam != userIdAuth) throw new Error(`Id ${userIdParam} not found !`);
+        return Service.update(db, userIdParam, user);
     }
 
-    updatePassword(db: IDbConnection, password: string, id: number, ) {
-        return Service.updatePassword(db, id, password);
+    updatePassword(db: IDbConnection, userIdParam: number, password: string, userIdAuth: number, ) {
+        if (userIdParam != userIdAuth) throw new Error(`Id ${userIdParam} not found !`);
+        return Service.updatePassword(db, userIdParam, password);
     }
 
     remove(db: IDbConnection, id: number) {
@@ -45,21 +48,22 @@ class Business {
         if (!user) throw new Error('Username or Password Invalid !');
         let payload = {
             sub: user.get('id'),
-            companyId: user.get('companyId')
+            company: []
         };
 
         if (!compareSync(auth.password, user.password)) throw new Error('Username or Password Invalid !')
 
+        let company = await CompanyService.findByUserId(db, user.get('id'));
+
+        company.forEach((company: ICompanyAttributes) => {
+            payload.company.push(company.id)
+        });
+
         let token: any = await Sign(payload);
 
-        let company: ICompanyAttributes = await CompanyService.findById(db, user.get('companyId'));
-
         return {
-            companyId: user.get('companyId'),
             userId: user.get('id'),
-            companyName: company.name,
-            companyFantasy: company.fantasy,
-            userName: user.get('name'),
+            company: payload.company,
             token: token
         };
     }

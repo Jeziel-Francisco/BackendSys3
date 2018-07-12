@@ -2,25 +2,16 @@ import { Request, Response } from 'express';
 
 import Business from './business';
 
-import { IPersonInstance, IPersonAttributes } from '../../models/PersonModel';
+import { IPersonInstance } from '../../models/PersonModel';
 import { onSuccessResponse, onErrorResponse } from '../../utils/utils';
 import { PropertyToken } from '../auth/auth';
 
 class Controller {
     constructor() { }
 
-    async findById(req: Request, res: Response) {
-        try {
-            let data: IPersonInstance = await Business.findById(req['context'], req.params.id, PropertyToken(req)[0].companyId);
-            onSuccessResponse(res, data);
-        } catch (error) {
-            onErrorResponse(res, error);
-        }
-    }
-
     async findAll(req: Request, res: Response) {
         try {
-            let data: IPersonInstance[] = await Business.findAll(req['context'], PropertyToken(req)[0].companyId);
+            let data: IPersonInstance[] = await Business.findAll(req['context'], req.params.companyId, PropertyToken(req).company);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -28,19 +19,8 @@ class Controller {
     }
 
     async create(req: Request, res: Response) {
-        let person: IPersonAttributes = req.body;
-        person.companyId = PropertyToken(req)[0].companyId;
         try {
-            let data: IPersonInstance = await Business.create(req['context'], person);
-            onSuccessResponse(res, data);
-        } catch (error) {
-            onErrorResponse(res, error);
-        }
-    }
-
-    async createBulk(req: Request, res: Response) {
-        try {
-            let data: IPersonInstance[] = await Business.createBulk(req['context'], req.body);
+            let data: IPersonInstance = await Business.create(req['context'], req.body, PropertyToken(req).company);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -49,7 +29,7 @@ class Controller {
 
     async update(req: Request, res: Response) {
         try {
-            let data: IPersonInstance = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req)[0].companyId);
+            let data: IPersonInstance = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).company);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

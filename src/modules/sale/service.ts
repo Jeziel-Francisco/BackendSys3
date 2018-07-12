@@ -1,19 +1,18 @@
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 import { ISaleAttibutes, ISaleInstance } from "../../models/SaleModel";
-import { ISaleProductAttibutes } from "../../models/SaleProductModel";
+import { Op } from 'sequelize';
 
 class Service {
     constructor() { }
 
-    findByCompanyId(db: IDbConnection, companyId: number) {
+    findAllCompanyUsers(db: IDbConnection, company: [number]) {
         return db.Sale.findAll({
             where: {
-                companyId: companyId
+                companyId: { [Op.in]: company }
             },
             include: [
                 {
-                    model: db.Person,
-                    attributes: ['id', 'name', 'fantasy', 'legal', 'registryFederal', 'registryState', 'consumerFinal']
+                    model: db.Person
                 },
                 {
                     model: db.Product
@@ -23,11 +22,11 @@ class Service {
     }
 
 
-    createSale(db, sale: ISaleAttibutes) {
+    create(db, sale: ISaleAttibutes) {
         return db.Sale.create(sale);
     }
 
-    async updateSale(db: IDbConnection, id: number, companyId: number, sale: ISaleAttibutes) {
+    async update(db: IDbConnection, id: number, sale: ISaleAttibutes, companyId: number) {
         let data: ISaleInstance = await db.Sale.findOne({
             where: {
                 id: id,
@@ -37,14 +36,6 @@ class Service {
         if (!data) throw new Error(`Id ${id} not found !`);
 
         return data.update(sale);
-    }
-
-    createSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes) {
-        return db.SaleProduct.create(saleProduct);
-    }
-
-    createBulkSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes[]) {
-        return db.SaleProduct.bulkCreate(saleProduct);
     }
 }
 

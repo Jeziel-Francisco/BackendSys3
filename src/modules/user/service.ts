@@ -1,6 +1,5 @@
 import { IUserAttibutes, IUserInstance } from "../../models/UserModel";
 
-import { Transaction } from "sequelize";
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 
 class Service {
@@ -17,10 +16,7 @@ class Service {
 
     findByUsername(db: IDbConnection, username: string) {
         return db.User.findOne({
-            where: { username: username },
-            include: [
-                { model: db.Company }
-            ]
+            where: { username: username }
         });
     }
 

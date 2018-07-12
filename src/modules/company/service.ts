@@ -1,6 +1,8 @@
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 import { ICompanyAttributes } from "../../models/CompanyModel";
 
+import { Op } from 'sequelize';
+
 class Service {
     constructor() { }
 
@@ -11,9 +13,9 @@ class Service {
     findByUserId(db: IDbConnection, userId: number) {
         return db.Company.findAll({
             include: [
-                { model: db.User }
+                { model: db.User, as: 'user', where: { userId: userId } }
             ]
-        })
+        });
     }
 
     create(db: IDbConnection, company: ICompanyAttributes) {

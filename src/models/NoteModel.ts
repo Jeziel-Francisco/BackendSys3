@@ -29,6 +29,16 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             autoIncrement: true,
             allowNull: false
         },
+        title: {
+            type: DataTypes.STRING
+        },
+        body: {
+            type: DataTypes.STRING
+        },
+        dateRegistration: {
+            type: DataTypes.DATE,
+            defaultValue: new Date()
+        },
         personId: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -40,16 +50,6 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         companyId: {
             type: DataTypes.INTEGER,
             allowNull: false
-        },
-        title: {
-            type: DataTypes.STRING
-        },
-        body: {
-            type: DataTypes.STRING
-        },
-        dateRegistration: {
-            type: DataTypes.DATE,
-            defaultValue: new Date()
         }
     }, {
             tableName: 'grades'

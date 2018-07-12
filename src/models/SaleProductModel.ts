@@ -58,7 +58,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
     }, {
-            tableName: 'saleProducts'
+            tableName: 'sales_products'
         }
 
     );

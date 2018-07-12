@@ -5,46 +5,28 @@ import Service from './service';
 class Business {
     constructor() { }
 
-    findById(db: IDbConnection, id: number, userId: number, company: [{ companyId: number }], companyId: number) {
-        if (company.indexOf({ companyId: companyId }) < 0) {
-            companyId = company[0].companyId;
-        }
-        return Service.findById(db, id, userId, companyId);
-    }
+    findByPerson(db: IDbConnection, companyId: number, userId: number, company: [number], personId: number) {
+        if (company.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
 
-    findByPerson(db: IDbConnection, userId: number, company: [{ companyId: number }], companyId: number, personId: number) {
-        if (company.indexOf({ companyId: companyId }) < 0) {
-            companyId = company[0].companyId;
-        }
         return Service.findByPerson(db, userId, companyId, personId);
     }
 
-    findAll(db: IDbConnection, userId: number, company: [{ companyId: number }], companyId: number) {
-        if (company.indexOf({ companyId: companyId }) < 0) {
-            companyId = company[0].companyId;
-        }
+    findAll(db: IDbConnection, companyId: number, userId: number, company: [number]) {
+        if (company.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
+
         return Service.findAll(db, userId, companyId);
     }
 
-    create(db: IDbConnection, note: INoteAttibutes, company: [{ companyId: number }]) {
-        if (company.indexOf({ companyId: note.companyId }) < 0) {
-            note.companyId = company[0].companyId;
-        }
+    create(db: IDbConnection, note: INoteAttibutes, userId: number, company: [number]) {
+        if ((company.indexOf(note.companyId) < 0) || (note.userId != userId)) throw new Error(`Company ${note.companyId} or User ${note.userId} does not belong to the user !`);
+
         return Service.create(db, note);
     }
 
-    update(db: IDbConnection, id: number, note: INoteAttibutes, userId: number, company: [{ companyId: number }], companyId: number) {
-        if (company.indexOf({ companyId: companyId }) < 0) {
-            companyId = company[0].companyId;
-        }
-        return Service.update(db, id, note, userId, companyId);
-    }
+    update(db: IDbConnection, id: number, note: INoteAttibutes, userId: number, company: [number]) {
+        if ((company.indexOf(note.companyId) < 0) || (note.userId != userId)) throw new Error(`Company ${note.companyId} or User ${note.userId} does not belong to the user !`);
 
-    remove(db: IDbConnection, id: number, userId: number, company: [{ companyId: number }], companyId: number) {
-        if (company.indexOf({ companyId: companyId }) < 0) {
-            companyId = company[0].companyId;
-        }
-        return Service.remove(db, id, userId, companyId);
+        return Service.update(db, id, note, userId, note.companyId);
     }
 }
 export default new Business();

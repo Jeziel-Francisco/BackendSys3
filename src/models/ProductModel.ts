@@ -35,19 +35,13 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         description: {
-            type: DataTypes.STRING,
-            validate: {
-                min: 3
-            }
+            type: DataTypes.STRING
         },
         package: {
             type: DataTypes.FLOAT
         },
         code: {
-            type: DataTypes.STRING,
-            validate: {
-                min: 3
-            }
+            type: DataTypes.STRING
         },
         priceCost: {
             type: DataTypes.FLOAT

@@ -18,7 +18,7 @@ export interface ICompanyUserInstance extends ICompanyUserAttibutes, Sequelize.I
 export interface ICompanyUserModel extends IBaseModelInterface, Sequelize.Model<ICompanyUserInstance, ICompanyUserAttibutes> { }
 
 export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes): ICompanyUserModel => {
-    const CompanyUser: ICompanyUserModel = sequelize.define('CompanyProduct', {
+    const CompanyUser: ICompanyUserModel = sequelize.define('CompanyUser', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -34,7 +34,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
     }, {
-            tableName: 'companyUser'
+            tableName: 'companies_users'
         }
 
     );

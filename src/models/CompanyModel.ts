@@ -33,15 +33,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
+            type: DataTypes.STRING
         },
         fantasy: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
         registryFederal: {
             type: DataTypes.STRING
@@ -78,7 +73,6 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
     Company.associate = (db: IDbConnection) => {
         db.Company.belongsToMany(db.User, { through: { model: db.CompanyUser }, foreignKey: 'companyId' });
 
-        // db.Company.hasMany(db.User, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Product, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Person, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Sale, { foreignKey: 'companyId' });

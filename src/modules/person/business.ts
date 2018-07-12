@@ -1,4 +1,3 @@
-import { IAddressModel } from "../../models/AddressModel";
 import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 import { IPersonAttributes } from "../../models/PersonModel";
 
@@ -7,24 +6,20 @@ import Service from './service';
 class Business {
     constructor() { }
 
-    findById(db: IDbConnection, id: number, companyId: number) {
-        return Service.findById(db, id, companyId);
-    }
+    findAll(db: IDbConnection, companyId: number, company: [number]) {
+        if (company.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
 
-    findAll(db: IDbConnection, companyId: number) {
         return Service.findAll(db, companyId);
     }
 
-    create(db: IDbConnection, person: IPersonAttributes) {
+    create(db: IDbConnection, person: IPersonAttributes, company: [number]) {
+        if (company.indexOf(person.companyId) < 0) throw new Error(`Company ${person.companyId} does not belong to the user !`);
         return Service.create(db, person);
     }
 
-    createBulk(db: IDbConnection, people: [IPersonAttributes]) {
-        return Service.createBulk(db, people);
-    }
-
-    update(db: IDbConnection, id: number, person: IPersonAttributes, companyId: number) {
-        return Service.update(db, id, person, companyId);
+    update(db: IDbConnection, id: number, person: IPersonAttributes, company: [number]) {
+        if (company.indexOf(person.companyId) < 0) throw new Error(`Company ${person.companyId} does not belong to the user !`);
+        return Service.update(db, id, person, person.companyId);
     }
 }
 

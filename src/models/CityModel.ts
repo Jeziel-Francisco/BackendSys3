@@ -25,12 +25,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             allowNull: false
         },
         name: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                min: 3
-            }
+            type: DataTypes.STRING
         },
         stateId: {
             type: DataTypes.INTEGER,

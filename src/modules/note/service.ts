@@ -4,20 +4,6 @@ import { INoteAttibutes } from "../../models/NoteModel";
 class Service {
     constructor() { }
 
-    findById(db: IDbConnection, id: number, userId: number, companyId: number) {
-        return db.Note.findOne({
-            where: {
-                id: id,
-                userId: userId,
-                companyId: companyId
-            },
-            attributes: ['id', 'title', 'body', 'dateRegistration'],
-            order: [
-                ['dateRegistration', 'DESC']
-            ]
-        });
-    }
-
     findByPerson(db: IDbConnection, userId: number, companyId: number, personId: number) {
         return db.Note.findAll({
             where: {
@@ -25,7 +11,6 @@ class Service {
                 companyId: companyId,
                 personId: personId
             },
-            attributes: ['id', 'title', 'body', 'dateRegistration'],
             order: [
                 ['dateRegistration', 'DESC']
             ]
@@ -38,11 +23,9 @@ class Service {
                 userId: userId,
                 companyId: companyId
             },
-            attributes: ['id', 'title', 'body', 'dateRegistration'],
             include: [
                 {
-                    model: db.Person,
-                    attributes: ['name', 'fantasy', 'id']
+                    model: db.Person
                 }
             ],
             order: [
@@ -61,24 +44,10 @@ class Service {
                 id: id,
                 userId: userId,
                 companyId: companyId
-            },
-            attributes: ['id', 'title', 'body', 'dateRegistration']
+            }
         });
-        if (!data) throw new Error('Id not found');
+        if (!data) throw new Error(`Id ${id} or userId ${userId} or companyId ${companyId} not found`);
         return await data.update(note);
-    }
-
-    async remove(db: IDbConnection, id: number, userId: number, companyId: number) {
-        let data = await db.Note.findOne({
-            where: {
-                id: id,
-                userId: userId,
-                companyId: companyId
-            },
-            attributes: ['id', 'title', 'body', 'dateRegistration']
-        });
-        if (!data) throw new Error('Id not found');
-        return await data.destroy();
     }
 }
 

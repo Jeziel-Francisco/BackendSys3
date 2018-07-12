@@ -2,34 +2,29 @@ import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
 
 import Service from './service';
 import { ISaleAttibutes } from "../../models/SaleModel";
-import { ISaleProductAttibutes } from "../../models/SaleProductModel";
 
 class Business {
     constructor() { }
 
-    findByCompanyId(db: IDbConnection, companyId: number) {
-        return Service.findByCompanyId(db, companyId);
+    findAllCompanyUsers(db: IDbConnection, companyBody: [number], companyAuth: [number]) {
+        companyBody.forEach(
+            (companyId: number) => {
+                if (companyAuth.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
+            });
+
+        return Service.findAllCompanyUsers(db, companyBody);
     }
 
-    createSale(db: IDbConnection, sale: ISaleAttibutes) {
-        return Service.createSale(db, sale);
+    create(db: IDbConnection, sale: ISaleAttibutes, company: [number]) {
+        if (company.indexOf(sale.companyId) < 0) throw new Error(`Company ${sale.companyId} does not belong to the user!`);
+
+        return Service.create(db, sale);
     }
 
-    updateSale(db: IDbConnection, id: number, company: [{ companyId: number }], sale: ISaleAttibutes) {
-        if (company.indexOf({ companyId: sale.companyId }) < 0) {
-            sale.companyId = company[0].companyId;
-        }
+    update(db: IDbConnection, id: number, sale: ISaleAttibutes, company: [number]) {
+        if (company.indexOf(sale.id) < 0) throw new Error(`Company ${sale.companyId} does not belong to the user !`);
 
-        return Service.updateSale(db, id, sale.companyId, sale);
-    }
-
-
-    createSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes) {
-        return Service.createSaleProduct(db, saleProduct);
-    }
-
-    createBulkSaleProduct(db: IDbConnection, saleProduct: ISaleProductAttibutes[]) {
-        return Service.createBulkSaleProduct(db, saleProduct);
+        return Service.update(db, id, sale, sale.companyId);
     }
 }
 
