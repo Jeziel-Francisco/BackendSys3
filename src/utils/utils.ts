@@ -56,7 +56,7 @@ export const onErrorResponse = (res: Response, error: any) => {
 };
 
 export const onSuccessResponse = (res: Response, data: any) => {
-    res.status(httpStatus.OK).json({ payload: data });
+    res.status(httpStatus.OK).json(data);
 };
 
 export const JWT_SECRET: string = process.env.JWT_SECRET || 'A][-=daposd--KSSDJ23983=-=-skdllaowq';
