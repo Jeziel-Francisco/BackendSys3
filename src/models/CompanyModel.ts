@@ -15,6 +15,7 @@ export interface ICompanyAttributes {
     nameResponsible?: string;
     typeCertificate?: string;
     typeEmissionNote?: string;
+    userId?: number;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -66,16 +67,19 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         typeEmissionNote: {
             type: DataTypes.STRING
         },
+        userId: {
+            type: DataTypes.INTEGER
+        }
     }, {
             tableName: 'companies'
         });
 
     Company.associate = (db: IDbConnection) => {
+        db.Company.hasMany(db.User, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Product, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Person, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Sale, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Receive, { foreignKey: 'companyId' });
-        db.Company.hasMany(db.User, { foreignKey: 'companyId' });
         db.Company.hasMany(db.EmailCompany, { foreignKey: 'companyId' });
         db.Company.hasMany(db.PhoneCompany, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Note, { foreignKey: 'companyId' });

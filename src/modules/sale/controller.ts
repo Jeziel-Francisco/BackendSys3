@@ -11,7 +11,7 @@ class Controller {
     constructor() { }
 
     async findByCompanyId(req: Request, res: Response) {
-        let companyId = PropertyToken(req).companyId;
+        let companyId = req.params.companyId;
         try {
             let data: ISaleInstance[] = await Business.findByCompanyId(req['context'], companyId);
             onSuccessResponse(res, data);

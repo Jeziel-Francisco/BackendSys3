@@ -31,12 +31,13 @@ class Controller {
     // sem rota de authenticacao
     async findByUsername(req: Request, res: Response) {
         try {
-            let data: IUserInstance = await Business.findByUsername(req['context'], req.params.usernmae);
+            let data: IUserInstance = await Business.findByUsername(req['context'], req.params.username);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
         }
     }
+
 
     // sem rota de authenticacao
     async create(req: Request, res: Response) {
