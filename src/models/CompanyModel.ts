@@ -16,7 +16,6 @@ export interface ICompanyAttributes {
     typeCertificate?: string;
     typeEmissionNote?: string;
     active?: boolean;
-    userId?: number;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -71,9 +70,6 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         typeEmissionNote: {
             type: DataTypes.STRING
-        },
-        userId: {
-            type: DataTypes.INTEGER
         }
     }, {
             tableName: 'companies'

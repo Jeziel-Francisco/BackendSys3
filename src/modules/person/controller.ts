@@ -11,7 +11,7 @@ class Controller {
 
     async findById(req: Request, res: Response) {
         try {
-            let data: IPersonInstance = await Business.findById(req['context'], req.params.id, PropertyToken(req).companyId);
+            let data: IPersonInstance = await Business.findById(req['context'], req.params.id, PropertyToken(req)[0].companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -20,7 +20,7 @@ class Controller {
 
     async findAll(req: Request, res: Response) {
         try {
-            let data: IPersonInstance[] = await Business.findAll(req['context'], PropertyToken(req).companyId);
+            let data: IPersonInstance[] = await Business.findAll(req['context'], PropertyToken(req)[0].companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -29,7 +29,7 @@ class Controller {
 
     async create(req: Request, res: Response) {
         let person: IPersonAttributes = req.body;
-        person.companyId = PropertyToken(req).companyId;
+        person.companyId = PropertyToken(req)[0].companyId;
         try {
             let data: IPersonInstance = await Business.create(req['context'], person);
             onSuccessResponse(res, data);
@@ -49,7 +49,7 @@ class Controller {
 
     async update(req: Request, res: Response) {
         try {
-            let data: IPersonInstance = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).companyId);
+            let data: IPersonInstance = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req)[0].companyId);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

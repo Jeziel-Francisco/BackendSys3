@@ -22,7 +22,6 @@ class Controller {
 
     async createSale(req: Request, res: Response) {
         let sale: ISaleAttibutes = req.body;
-        sale.companyId = PropertyToken(req).companyId;
         sale.userId = PropertyToken(req).sub;
         try {
             let data: ISaleInstance = await Business.createSale(req['context'], sale);
@@ -34,7 +33,7 @@ class Controller {
 
     async updateSale(req: Request, res: Response) {
         try {
-            let data: ISaleInstance = await Business.updateSale(req['context'], req.params.id, PropertyToken(req).companyId, req.body);
+            let data: ISaleInstance = await Business.updateSale(req['context'], req.params.id, PropertyToken(req).company, req.body);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

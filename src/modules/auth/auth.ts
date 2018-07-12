@@ -19,8 +19,8 @@ export const Verify = (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export const PropertyToken = (req: Request): { sub: number, companyId: number, iat: any } => {
+export const PropertyToken = (req: Request): { sub: number, company: [{ companyId: number }], iat: any } => {
     let authorization = req.headers.authorization;
     let token = authorization.slice(7, authorization.length) as string;
-    return jwt.verify(token, JWT_SECRET) as { sub: number, companyId: number, iat: any };
+    return jwt.verify(token, JWT_SECRET) as { sub: number, company: [{ companyId: number }], iat: any };
 }

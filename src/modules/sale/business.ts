@@ -15,8 +15,12 @@ class Business {
         return Service.createSale(db, sale);
     }
 
-    updateSale(db: IDbConnection, id: number, companyId: number, sale: ISaleAttibutes) {
-        return Service.updateSale(db, id, companyId, sale);
+    updateSale(db: IDbConnection, id: number, company: [{ companyId: number }], sale: ISaleAttibutes) {
+        if (company.indexOf({ companyId: sale.companyId }) < 0) {
+            sale.companyId = company[0].companyId;
+        }
+
+        return Service.updateSale(db, id, sale.companyId, sale);
     }
 
 

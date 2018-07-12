@@ -7,7 +7,6 @@ import { IDbConnection } from "../interfaces/DbConnectionInterfaces";
 
 export interface IUserAttibutes {
     id?: number;
-    companyId?: number;
     password?: string;
     name?: string;
     username?: string;
@@ -66,10 +65,6 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         percentageDicount: {
             type: DataTypes.FLOAT
-        },
-        companyId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
         }
     }, {
             tableName: 'users',
