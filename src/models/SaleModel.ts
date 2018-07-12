@@ -13,6 +13,9 @@ export interface ISaleAttibutes {
     note?: string;
     personId?: number;
     companyId?: number;
+    sent?: boolean;
+    approved?: boolean;
+    active?: boolean;
     userId?: number;
     createdAt?: string;
     updatedAt?: string;
@@ -47,6 +50,18 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         percentageDiscount: {
             type: DataTypes.FLOAT
+        },
+        sent: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        approved: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         personId: {
             type: DataTypes.INTEGER,

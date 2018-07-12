@@ -62,7 +62,8 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
             type: DataTypes.FLOAT
         },
         active: {
-            type: DataTypes.BOOLEAN
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         packageId: {
             type: DataTypes.INTEGER,

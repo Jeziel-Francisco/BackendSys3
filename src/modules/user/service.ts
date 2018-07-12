@@ -16,7 +16,12 @@ class Service {
     }
 
     findByUsername(db: IDbConnection, username: string) {
-        return db.User.findOne({ where: { username: username } });
+        return db.User.findOne({
+            where: { username: username },
+            include: [
+                { model: db.Company }
+            ]
+        });
     }
 
     async create(db: IDbConnection, model: IUserAttibutes) {

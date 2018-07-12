@@ -11,6 +11,7 @@ export interface IAddressCompanyAttibutes {
     number?: string;
     complement?: string;
     note?: string;
+    active?: boolean;
     personId?: number;
     cityId?: number;
     createdAt?: string;
@@ -49,6 +50,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         note: {
             type: DataTypes.STRING
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         cityId: {
             type: DataTypes.INTEGER,

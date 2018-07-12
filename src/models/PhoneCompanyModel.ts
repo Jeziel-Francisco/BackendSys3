@@ -8,6 +8,7 @@ export interface IPhoneCompanyAttibutes {
     companyId?: number;
     phone?: string;
     contact?: string;
+    active?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -40,6 +41,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
                 notEmpty: true,
                 min: 3
             }
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         companyId: {
             type: DataTypes.INTEGER,

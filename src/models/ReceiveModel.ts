@@ -10,7 +10,7 @@ export interface IReceiveAttibutes {
     payment?: Date;
     peding?: boolean;
     total?: number;
-    excluded?: boolean;
+    active?: boolean;
     userId?: number;
     personId?: number;
     saleId?: number;
@@ -48,8 +48,9 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         total: {
             type: DataTypes.FLOAT
         },
-        excluded: {
-            type: DataTypes.BOOLEAN
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         userId: {
             type: DataTypes.INTEGER,
@@ -78,7 +79,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         db.Receive.belongsTo(db.Sale, { foreignKey: 'saleId' });
         db.Receive.belongsTo(db.Person, { foreignKey: 'personId' });
         db.Receive.belongsTo(db.User, { foreignKey: 'userId' });
-        
+
         db.Receive.hasMany(db.PaymentReceive, { foreignKey: 'receiveId' });
     }
 

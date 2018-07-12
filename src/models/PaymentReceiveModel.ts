@@ -11,7 +11,7 @@ export interface IPaymentReceiveAttibutes {
     emission?: Date;
     receiveId?: number;
     typeDocumentId?: number;
-    excluded?: boolean;
+    active?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -42,8 +42,9 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         emission: {
             type: DataTypes.DATE
         },
-        excluded: {
-            type: DataTypes.BOOLEAN
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         receiveId: {
             type: DataTypes.INTEGER,

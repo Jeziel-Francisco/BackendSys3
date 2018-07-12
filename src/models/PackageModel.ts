@@ -8,6 +8,7 @@ export interface IPackageAttibutes {
     description?: string;
     initials?: string;
     factor?: number;
+    active?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -31,6 +32,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         initials: {
             type: DataTypes.STRING
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         factor: {
             type: DataTypes.FLOAT

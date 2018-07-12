@@ -9,6 +9,7 @@ export interface ITypeDocumentAttibutes {
     type?: number;
     portion?: boolean;
     description?: string;
+    active?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -35,6 +36,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         portion: {
             type: DataTypes.BOOLEAN
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         description: {
             type: DataTypes.STRING

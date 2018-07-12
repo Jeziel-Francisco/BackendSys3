@@ -15,6 +15,7 @@ export interface ICompanyAttributes {
     nameResponsible?: string;
     typeCertificate?: string;
     typeEmissionNote?: string;
+    active?: boolean;
     userId?: number;
     createdAt?: string;
     updatedAt?: string;
@@ -61,6 +62,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         nameResponsible: {
             type: DataTypes.STRING
         },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
         typeCertificate: {
             type: DataTypes.STRING
         },
@@ -75,7 +80,9 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         });
 
     Company.associate = (db: IDbConnection) => {
-        db.Company.hasMany(db.User, { foreignKey: 'companyId' });
+        db.Company.belongsToMany(db.User, { through: { model: db.CompanyUser }, foreignKey: 'companyId' });
+
+        // db.Company.hasMany(db.User, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Product, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Person, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Sale, { foreignKey: 'companyId' });

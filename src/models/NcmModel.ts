@@ -11,6 +11,7 @@ export interface INcmAttibutes {
     natureRecipePisCofins?: number;
     percentageTributesFederal?: number;
     percentageTributesState?: number;
+    active?: boolean;
     createdAt?: string;
     updatedAt?: string;
 }
@@ -43,6 +44,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         },
         percentageTributesFederal: {
             type: DataTypes.FLOAT
+        },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
         },
         percentageTributesState: {
             type: DataTypes.FLOAT

@@ -13,6 +13,7 @@ export interface IPersonAttributes {
     registryMunicipal?: string;
     consumerFinal?: boolean;
     type?: number; //tipo 1 cliente, tipo 2 forncedor ....
+    active?: boolean;
     companyId?: number;
     createdAt?: string;
     updatedAt?: string;
@@ -59,6 +60,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         consumerFinal: {
             type: DataTypes.BOOLEAN
         },
+        active: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: true
+        },
         type: {
             type: DataTypes.INTEGER
         },
@@ -77,7 +82,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         db.Person.hasMany(db.Address, { foreignKey: 'personId' });
         db.Person.hasMany(db.Receive, { foreignKey: 'personId' });
         db.Person.hasMany(db.Sale, { foreignKey: 'personId' });
-        db.Person.hasMany(db.Note, {foreignKey:'personId'});
+        db.Person.hasMany(db.Note, { foreignKey: 'personId' });
     }
 
     return Person;
