@@ -6,13 +6,8 @@ import { ISaleAttibutes } from "../../models/SaleModel";
 class Business {
     constructor() { }
 
-    findAllCompanyUsers(db: IDbConnection, companyBody: [number], companyAuth: [number]) {
-        companyBody.forEach(
-            (companyId: number) => {
-                if (companyAuth.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
-            });
-
-        return Service.findAllCompanyUsers(db, companyBody);
+    findAllCompanyUsers(db: IDbConnection, company: [number]) {
+        return Service.findAllCompanyUsers(db, company);
     }
 
     create(db: IDbConnection, sale: ISaleAttibutes, company: [number]) {

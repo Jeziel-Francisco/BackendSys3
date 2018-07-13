@@ -20,7 +20,7 @@ export const AddressRoutes = (express: Application) => {
 }
 
 export const CompanyRoutes = (express: Application) => {
-    express.route('/api/v1/company/user/:userId').all(Verify).get(Context.setContext, companyCtrl.findByUserId);
+    express.route('/api/v1/company/user').all(Verify).get(Context.setContext, companyCtrl.findByUserId);
 
     express.route('/api/v1/company').all(Verify).post(Context.setContext, companyCtrl.create);
 }
@@ -44,7 +44,8 @@ export const PersonRoutes = (express: Application) => {
 
 export const SaleRoutes = (express: Application) => {
 
-    express.route('/api/v1/sale/companies').all(Verify).post(Context.setContext, SaleCtrl.findAllCompanyUsers);
+    express.route('/api/v1/sale/companies').all(Verify).get(Context.setContext, SaleCtrl.findAllCompanyUsers);
+
     express.route('/api/v1/sale').all(Verify).post(Context.setContext, SaleCtrl.create);
 
     express.route('/api/v1/sale/:id').all(Verify).put(Context.setContext, SaleCtrl.update);

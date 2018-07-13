@@ -9,7 +9,7 @@ class Controller {
 
     async findByUserId(req: Request, res: Response) {
         try {
-            let data: ICompanyInstance[] = await Business.findByUserId(req['context'], req.params.userId, PropertyToken(req).sub);
+            let data: ICompanyInstance[] = await Business.findByUserId(req['context'], PropertyToken(req).sub);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

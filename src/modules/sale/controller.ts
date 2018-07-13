@@ -11,7 +11,7 @@ class Controller {
 
     async findAllCompanyUsers(req: Request, res: Response) {
         try {
-            let data: ISaleInstance[] = await Business.findAllCompanyUsers(req['context'], req.body.company, PropertyToken(req).company);
+            let data: ISaleInstance[] = await Business.findAllCompanyUsers(req['context'], PropertyToken(req).company);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

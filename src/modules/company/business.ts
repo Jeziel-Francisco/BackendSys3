@@ -5,9 +5,8 @@ import Service from "./service";
 class Business {
     constructor() { }
 
-    findByUserId(db: IDbConnection, userIdParam: number, userIdAuth: number) {
-        if (userIdAuth != userIdParam) throw new Error(`Id ${userIdParam} not fount !`);
-        return Service.findByUserId(db, userIdParam);
+    findByUserId(db: IDbConnection, userId: number) {
+        return Service.findByUserId(db, userId);
     }
 
     create(db: IDbConnection, company: ICompanyAttributes) {
