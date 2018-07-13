@@ -63,5 +63,10 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
 
     );
 
+    SaleProduct.associate = ((db: IDbConnection) => {
+        db.SaleProduct.belongsTo(db.Sale, { foreignKey: 'saleId' });
+        db.SaleProduct.belongsTo(db.Product, { foreignKey: 'productId' });
+    });
+
     return SaleProduct;
 }
