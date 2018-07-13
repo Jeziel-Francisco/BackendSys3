@@ -10,7 +10,7 @@ class Business {
         if (companyId){
             company = [companyId];
         }
-        
+                
         return Service.findAllCompanyUsers(db, company);
     }
 

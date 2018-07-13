@@ -16,11 +16,9 @@ class App {
     }
 
     middleware(express: express.Application) {
-        // express.use(helmet({ hidePoweredBy: true }));
         express.use(cors());
-        // express.use(morgan('dev'));
-        express.use(bodyParser.urlencoded({ extended: true }));
-        express.use(bodyParser.json());
+         express.use(bodyParser.urlencoded({ extended: true }));
+         express.use(bodyParser.json());
     }
 
     routes(express: express.Application) {

@@ -5,6 +5,7 @@ import { Request, Response, NextFunction } from 'express';
 
 
 export const Sign = (payload: any): string => {
+    console.log('Sign');
     return jwt.sign(payload, JWT_SECRET);
 }
 

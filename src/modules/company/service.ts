@@ -13,7 +13,7 @@ class Service {
     findByUserId(db: IDbConnection, userId: number) {
         return db.Company.findAll({
             include: [
-                { model: db.User, as: 'user', where: { userId: userId } }
+                { model: db.CompanyUser, where: { userId: userId } }
             ]
         });
     }

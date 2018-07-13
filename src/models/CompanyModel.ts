@@ -71,7 +71,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         });
 
     Company.associate = (db: IDbConnection) => {
-        db.Company.belongsToMany(db.User, { through: { model: db.CompanyUser }, foreignKey: 'companyId' });
+        db.Company.hasMany(db.CompanyUser, { foreignKey: 'companyId' });
 
         db.Company.hasMany(db.Product, { foreignKey: 'companyId' });
         db.Company.hasMany(db.Person, { foreignKey: 'companyId' });

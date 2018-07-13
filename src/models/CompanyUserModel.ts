@@ -39,5 +39,11 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
 
     );
 
+    CompanyUser.associate = (db: IDbConnection) => {
+        db.CompanyUser.belongsTo(db.User, { foreignKey: 'userId' });
+        db.CompanyUser.belongsTo(db.Company, { foreignKey: 'companyId' });
+    }
+    
+
     return CompanyUser;
 }
