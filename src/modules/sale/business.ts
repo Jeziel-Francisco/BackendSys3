@@ -6,7 +6,11 @@ import { ISaleAttibutes } from "../../models/SaleModel";
 class Business {
     constructor() { }
 
-    findAllCompanyUsers(db: IDbConnection, company: [number]) {
+    findAllCompanyUsers(db: IDbConnection, companyId: number, company: [number]) {
+        if (companyId){
+            company = [companyId];
+        }
+        
         return Service.findAllCompanyUsers(db, company);
     }
 
