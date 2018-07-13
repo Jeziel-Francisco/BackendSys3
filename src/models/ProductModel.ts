@@ -83,7 +83,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
         db.Product.belongsTo(db.Package, { foreignKey: 'packageId' });
         db.Product.belongsTo(db.Ncm, { foreignKey: 'ncmId' });
 
-        db.Product.belongsToMany(db.Sale, { through: { model: db.SaleProduct }, foreignKey: 'productId' });
+        db.Product.hasMany(db.SaleProduct, { foreignKey: 'productId' });
 
     }
 

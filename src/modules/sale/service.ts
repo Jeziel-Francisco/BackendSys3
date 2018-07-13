@@ -15,12 +15,14 @@ class Service {
                     model: db.Person
                 },
                 {
-                    model: db.Product
+                    model: db.SaleProduct,
+                    include: [
+                        { model: db.Product }
+                    ]
                 }
             ]
-        })
+        });
     }
-
 
     create(db, sale: ISaleAttibutes) {
         return db.Sale.create(sale);

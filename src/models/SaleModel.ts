@@ -91,7 +91,7 @@ export default (sequelize: Sequelize.Sequelize, DataTypes: Sequelize.DataTypes):
 
         db.Sale.hasMany(db.Receive, { foreignKey: 'saleId' });
 
-        db.Sale.belongsToMany(db.Product, { through: { model: db.SaleProduct }, foreignKey: 'saleId' });
+        db.Sale.hasMany(db.SaleProduct, { foreignKey: 'saleId' });
     }
 
     return Sale;

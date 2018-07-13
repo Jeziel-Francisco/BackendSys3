@@ -19,10 +19,8 @@ class Controller {
     }
 
     async create(req: Request, res: Response) {
-        let sale: ISaleAttibutes = req.body;
-        sale.userId = PropertyToken(req).sub;
         try {
-            let data: ISaleInstance = await Business.create(req['context'], sale, PropertyToken(req).company);
+            let data: ISaleInstance = await Business.create(req['context'], req.body, PropertyToken(req).company);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
