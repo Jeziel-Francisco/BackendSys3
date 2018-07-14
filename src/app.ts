@@ -1,10 +1,20 @@
-import * as express from 'express';
-import * as morgan from 'morgan';
-import { UserRoutes, CompanyRoutes, PersonRoutes, NoteRoutes, AddressRoutes, SaleRoutes } from './routes/routes';
-import * as cors from 'cors';
-import * as helmet from 'helmet';
-
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
+import * as express from 'express';
+import * as helmet from 'helmet';
+import * as morgan from 'morgan';
+
+import {
+    AddressRoutes,
+    CityRoutes,
+    CompanyRoutes,
+    NoteRoutes,
+    PersonRoutes,
+    SaleRoutes,
+    StateRoutes,
+    UserRoutes
+} from './routes/routes';
+
 
 class App {
     public express: express.Application;
@@ -15,19 +25,25 @@ class App {
         this.routes(this.express);
     }
 
-    middleware(express: express.Application) {
-        express.use(cors());
-         express.use(bodyParser.urlencoded({ extended: true }));
-         express.use(bodyParser.json());
+    middleware(app: express.Application) {
+        app.use(cors());
+        app.use(bodyParser.urlencoded({ extended: true }));
+        app.use(bodyParser.json());
+
+        if (process.env.NODE_ENV = 'development') {
+            this.express.use(express.static('public'));
+        }
     }
 
-    routes(express: express.Application) {
-        AddressRoutes(express);
-        CompanyRoutes(express);
-        NoteRoutes(express);
-        PersonRoutes(express);
-        UserRoutes(express);
-        SaleRoutes(express);
+    routes(app: express.Application) {
+        AddressRoutes(app);
+        CityRoutes(app);
+        CompanyRoutes(app);
+        NoteRoutes(app);
+        PersonRoutes(app);
+        SaleRoutes(app);
+        StateRoutes(app);
+        UserRoutes(app);
     }
 }
 

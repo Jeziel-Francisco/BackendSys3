@@ -4,10 +4,12 @@ import { Verify } from "../modules/auth/auth";
 import Context from "../middleware/context.middleware";
 
 import AddressCtrl from './../modules/address/controller';
-import companyCtrl from './../modules/company/controller';
+import CityCtrl from './../modules/city/controller';
+import CompanyCtrl from './../modules/company/controller';
 import NoteCtrl from './../modules/note/controller';
 import PersonCtrl from './../modules/person/controller';
 import SaleCtrl from './../modules/sale/controller';
+import StateCtrl from './../modules/state/controller';
 import UserCtrl from './../modules/user/controller';
 
 export const AddressRoutes = (express: Application) => {
@@ -20,9 +22,9 @@ export const AddressRoutes = (express: Application) => {
 }
 
 export const CompanyRoutes = (express: Application) => {
-    express.route('/api/v1/company/user').all(Verify).get(Context.setContext, companyCtrl.findByUserId);
+    express.route('/api/v1/company/user').all(Verify).get(Context.setContext, CompanyCtrl.findByUserId);
 
-    express.route('/api/v1/company').all(Verify).post(Context.setContext, companyCtrl.create);
+    express.route('/api/v1/company').all(Verify).post(Context.setContext, CompanyCtrl.create);
 }
 
 export const NoteRoutes = (express: Application) => {
@@ -61,4 +63,12 @@ export const UserRoutes = (express: Application) => {
 
     express.route('/api/v1/user/:id').all(Verify).put(Context.setContext, UserCtrl.update);
     express.route('/api/v1/user/password/:id').all(Verify).put(Context.setContext, UserCtrl.updatePassword);
+}
+
+export const CityRoutes = (express: Application) => { 
+    express.route('/api/v1/city').all(Verify).get(Context.setContext,CityCtrl.findAll)
+}
+
+export const StateRoutes = (express: Application) => { 
+    express.route('/api/v1/state').all(Verify).get(Context.setContext,StateCtrl.findAll)
 }
