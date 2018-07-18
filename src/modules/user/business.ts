@@ -1,11 +1,12 @@
+import CompanyService from './../company/service';
 import Service from "./service";
 
-import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
-import { IUserAttibutes, IUserInstance } from "../../models/UserModel";
-import { Sign } from "../auth/auth";
-import CompanyService from './../company/service';
-import { ICompanyAttributes } from "../../models/CompanyModel";
 import { compareSync } from "bcryptjs";
+import { ICompanyAttributes } from "../../models/CompanyModel";
+import { IDbConnection } from "../../interfaces/DbConnectionInterfaces";
+import { Sign } from "../auth/auth";
+import { IUserAttibutes, IUserInstance } from "../../models/UserModel";
+import { UserSchema } from './../../schema/schema';
 
 
 class Business {
