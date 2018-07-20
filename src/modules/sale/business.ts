@@ -22,7 +22,7 @@ class Business {
     }
 
     update(db: IDbConnection, id: number, sale: ISaleAttibutes, company: [number]) {
-        if (company.indexOf(sale.id) < 0) throw new Error(`Company ${sale.companyId} does not belong to the user !`);
+        if (company.indexOf(sale.companyId) < 0) throw new Error(`Company ${sale.companyId} does not belong to the user !`);
 
         return Service.update(db, id, sale, sale.companyId);
     }

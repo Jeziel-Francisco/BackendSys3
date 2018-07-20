@@ -13,9 +13,8 @@ class Business {
 
     constructor() { }
 
-    findById(db: IDbConnection, userId: number, id: number) {
-        if (userId != id) throw new Error(`Id ${userId} not found !`);
-        return Service.findById(db, id);
+    findById(db: IDbConnection, userId: number) {
+        return Service.findById(db, userId);
     }
 
     findByEmail(db: IDbConnection, email: string) {
@@ -30,14 +29,12 @@ class Business {
         return Service.create(db, user);
     }
 
-    update(db: IDbConnection, userIdParam: number, user: IUserAttibutes, userIdAuth: number) {
-        if (userIdParam != userIdAuth) throw new Error(`Id ${userIdParam} not found !`);
-        return Service.update(db, userIdParam, user);
+    update(db: IDbConnection, userId: number, user: IUserAttibutes) {
+        return Service.update(db, userId, user);
     }
 
-    updatePassword(db: IDbConnection, userIdParam: number, password: string, userIdAuth: number, ) {
-        if (userIdParam != userIdAuth) throw new Error(`Id ${userIdParam} not found !`);
-        return Service.updatePassword(db, userIdParam, password);
+    updatePassword(db: IDbConnection, userId: number, password: string) {
+        return Service.updatePassword(db, userId, password);
     }
 
     remove(db: IDbConnection, id: number) {

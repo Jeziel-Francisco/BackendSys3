@@ -11,7 +11,7 @@ class Controller {
 
     async findById(req: Request, res: Response) {
         try {
-            let data: IUserInstance = await Business.findById(req['context'], req.params.id, PropertyToken(req).sub);
+            let data: IUserInstance = await Business.findById(req['context'], PropertyToken(req).sub);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -60,7 +60,7 @@ class Controller {
 
     async update(req: Request, res: Response) {
         try {
-            let data = await Business.update(req['context'], req.params.id, req.body, PropertyToken(req).sub);
+            let data = await Business.update(req['context'], PropertyToken(req).sub, req.body);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);
@@ -69,7 +69,7 @@ class Controller {
 
     async updatePassword(req: Request, res: Response) {
         try {
-            let data = await Business.updatePassword(req['context'], req.params.id, req.body.password, PropertyToken(req).sub);
+            let data = await Business.updatePassword(req['context'], PropertyToken(req).sub, req.body.password);
             onSuccessResponse(res, data);
         } catch (error) {
             onErrorResponse(res, error);

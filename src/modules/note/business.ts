@@ -5,14 +5,14 @@ import Service from './service';
 class Business {
     constructor() { }
 
-    findByPerson(db: IDbConnection, companyId: number, userId: number, company: [number], personId: number) {
-        if (company.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
+    findByPerson(db: IDbConnection, companyId: any, userId: number, company: [number], personId: number) {
+        if (company.indexOf(parseInt(companyId)) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
 
         return Service.findByPerson(db, userId, companyId, personId);
     }
 
-    findAll(db: IDbConnection, companyId: number, userId: number, company: [number]) {
-        if (company.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
+    findAll(db: IDbConnection, companyId: any, userId: number, company: [number]) {
+        if (company.indexOf(parseInt(companyId)) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
 
         return Service.findAll(db, userId, companyId);
     }

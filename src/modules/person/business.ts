@@ -6,7 +6,8 @@ import Service from './service';
 class Business {
     constructor() { }
 
-    findAll(db: IDbConnection, companyId: number, company: [number]) {
+    findAll(db: IDbConnection, companyId: any, company: [number]) {
+        companyId = parseInt(companyId);
         if (company.indexOf(companyId) < 0) throw new Error(`Company ${companyId} does not belong to the user !`);
 
         return Service.findAll(db, companyId);

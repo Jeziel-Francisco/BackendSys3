@@ -59,10 +59,10 @@ export const UserRoutes = (express: Application) => {
     express.route('/api/v1/user').post(Context.setContext, UserCtrl.create);
     express.route('/api/v1/user/auth').post(Context.setContext, UserCtrl.auth)
 
-    express.route('/api/v1/user/:id').all(Verify).get(Context.setContext, UserCtrl.findById);
+    express.route('/api/v1/user').all(Verify).get(Context.setContext, UserCtrl.findById);
 
-    express.route('/api/v1/user/:id').all(Verify).put(Context.setContext, UserCtrl.update);
-    express.route('/api/v1/user/password/:id').all(Verify).put(Context.setContext, UserCtrl.updatePassword);
+    express.route('/api/v1/user').all(Verify).put(Context.setContext, UserCtrl.update);
+    express.route('/api/v1/user/password').all(Verify).put(Context.setContext, UserCtrl.updatePassword);
 }
 
 export const CityRoutes = (express: Application) => { 
